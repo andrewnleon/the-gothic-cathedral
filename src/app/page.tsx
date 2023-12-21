@@ -6,7 +6,8 @@ export default function Home() {
     <main
       className="flex h-screen w-screen flex-col items-center justify-between"
       style={{
-        background: `url('/images/background.jpg') repeat-x top center`, objectFit: 'contain',
+        background: `url('/images/background.jpg') repeat-x top center`,
+        objectFit: "contain",
       }}
     >
       {/* Header */}
@@ -36,8 +37,7 @@ export default function Home() {
       <div className="relative z-[10] -mt-[8.3rem] flex h-[564px] w-[1043px] bg-slate-700"></div>
 
       {/* Footer */}
-      <div className="bg-white p-10 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-      </div>
+      <div className="grid w-full bg-white p-10 text-center lg:mb-0 lg:grid-cols-4 lg:text-left"></div>
     </main>
   );
 }
