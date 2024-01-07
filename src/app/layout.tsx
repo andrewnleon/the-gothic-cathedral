@@ -5,7 +5,7 @@ import '../styles/app.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'The Gothic Cathedral Kiosk',
+  title: 'The Gothic Cathedral Kiosk | Created By Andrew Leonberger',
   description: 'Created By Andrew Leonberger',
 }
 
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en-us">
       <body className={inter.className}>{children}</body>
     </html>
   )

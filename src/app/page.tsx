@@ -1,76 +1,88 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import SlidingTransition from "./components/SlidingTransition";
-
-function Section({ isVisible, onNext, children, label, showButton }: any) {
-  const handleClick = () => {
-    onNext(false);
-  };
-
-  return (
-    <SlidingTransition isVisible={isVisible}>
-      <div
-        className={`${
-          isVisible ? "relative flex h-[564px] w-[1043px] bg-slate-700" : ""
-        }`}
-      >
-        {isVisible && (
-          <>
-            {children}
-
-            {showButton && (
-              <div className="btn-enter absolute bottom-0 right-0 pb-3 pr-5">
-                <button onClick={handleClick}>{label}</button>
-              </div>
-            )}
-          </>
-        )}
-      </div>
-    </SlidingTransition>
-  );
-}
+import Architecture from "./components/sections/Architecture";
+import FlyingButtresses from "./components/sections/FlyingButtresses";
+import Gargoyales from "./components/sections/Gargoyales";
+import GothicVault from "./components/sections/GothicVault";
+import Intro from "./components/sections/Intro";
+import Roof from "./components/sections/Roof";
+import Section from "./components/Section";
+import StainedGlassWindow from "./components/sections/StainedGlassWindow";
+import ThankYou from "./components/sections/ThankYou";
 
 export default function Home() {
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
   const [showArchitecture, setShowArchitecture] = useState(false);
+  const [showGargoyales, setShowGargoyales] = useState(false);
+  const [showFlyingButtresses, setShowFlyingButtresses] = useState(false);
+  const [showGothicVault, setShowGothicVault] = useState(false);
+  const [showRoof, setShowRoof] = useState(false);
+  const [showStainedGlassWindow, setShowStainedGlassWindow] = useState(false);
+  const [showOutro, setShowOutro] = useState(false);
 
-  // Handle transitions
+  const sectionSetters = useMemo(
+    () => [
+      setShowIntro,
+      setShowArchitecture,
+      setShowGargoyales,
+      setShowFlyingButtresses,
+      setShowGothicVault,
+      setShowRoof,
+      setShowStainedGlassWindow,
+      setShowOutro,
+    ],
+    [],
+  );
+
   useEffect(() => {
-    if (!showIntro) {
-      const timer = setTimeout(() => setShowArchitecture(true), 500);
+    if (currentSectionIndex < sectionSetters.length) {
+      const timer = setTimeout(() => {
+        sectionSetters[currentSectionIndex](true);
+      }, 500);
+
       return () => clearTimeout(timer);
     }
-  }, [showIntro]);
+  }, [currentSectionIndex, sectionSetters]);
 
-  useEffect(() => {
-    if (!showArchitecture) {
-      const timer = setTimeout(() => setShowIntro(true), 500);
-      return () => clearTimeout(timer);
+  const goToNextSection = () => {
+    if (currentSectionIndex < sectionSetters.length - 1) {
+      sectionSetters[currentSectionIndex](false);
+      setCurrentSectionIndex(currentSectionIndex + 1);
     }
-  }, [showArchitecture]);
+  };
+
+  const sections = [
+    { label: "Intro", isVisible: showIntro, content: <Intro />, showButton: true },
+    { label: "Architecture", isVisible: showArchitecture, content: <Architecture />, showButton: true },
+    { label: "Gargoyales", isVisible: showGargoyales, content: <Gargoyales />, showButton: true },
+    { label: "Flying Buttresses", isVisible: showFlyingButtresses, content: <FlyingButtresses />, showButton: true },
+    { label: "Gothic Vault", isVisible: showGothicVault, content: <GothicVault />, showButton: true },
+    { label: "Roof", isVisible: showRoof, content: <Roof />, showButton: true },
+    { label: "Stained Glass Window", isVisible: showStainedGlassWindow, content: <StainedGlassWindow />, showButton: true },
+    { label: "Thank You", isVisible: showOutro, content: <ThankYou />, showButton: true },
+  ];
 
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-between overflow-hidden">
       <div className="relative z-[10] flex flex-grow items-center justify-center">
         <AnimatePresence mode="sync">
-          {showIntro && (
-            <Section isVisible={showIntro} onNext={setShowIntro} showButton={true} label="Intro">
-              Enter
-            </Section>
+          {sections.map(
+            (section, index) =>
+              section.isVisible && (
+                <Section
+                  key={index}
+                  isVisible={section.isVisible}
+                  onNext={goToNextSection}
+                  showButton={section.showButton}
+                  label={section.label}
+                >
+                  {section.content}
+                </Section>
+              ),
           )}
-          {showArchitecture && (
-            <Section
-              isVisible={showArchitecture}
-              onNext={setShowArchitecture}
-              showButton={true} 
-              label="Architecture"
-            >
-              Architecture
-            </Section>
-          )}
-          {/* Additional sections can be added here similarly */}
         </AnimatePresence>
       </div>
     </main>

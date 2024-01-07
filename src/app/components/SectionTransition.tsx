@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function SlidingTransition({
+export default function SectionTransition({
   children,
   isVisible,
   onAnimationComplete,
