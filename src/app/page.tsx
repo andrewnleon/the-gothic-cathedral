@@ -1,43 +1,61 @@
-import { url } from "inspector";
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import SlidingTransition from "./components/SlidingTransition";
+
+function Section({ isVisible, onNext, children }: any) {
+  const handleClick = () => {
+    onNext(false);
+  };
+
   return (
-    <main
-      className="flex h-screen w-screen flex-col items-center justify-between"
-      style={{
-        background: `url('/images/background.jpg') repeat-x top center`,
-        objectFit: "contain",
-      }}
-    >
-      {/* Header */}
-      <div className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto" />
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white lg:static lg:h-auto lg:w-auto lg:bg-none dark:from-black dark:via-black">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <SlidingTransition isVisible={isVisible}>
+      <div className={`${isVisible ? "relative flex h-[564px] w-[1043px] bg-slate-700" : ""}`}>
+        <div className="btn-enter absolute bottom-0 right-0 pb-3 pr-5">
+          {isVisible && <button onClick={handleClick}>{children}</button>}
         </div>
       </div>
+    </SlidingTransition>
+  );
+}
 
-      {/* Body */}
-      <div className="relative z-[10] -mt-[8.3rem] flex h-[564px] w-[1043px] bg-slate-700"></div>
+export default function Home() {
+  const [showIntro, setShowIntro] = useState(true);
+  const [showArchitecture, setShowArchitecture] = useState(false);
 
-      {/* Footer */}
-      <div className="grid w-full bg-white p-10 text-center lg:mb-0 lg:grid-cols-4 lg:text-left"></div>
+  // Handle transitions
+  useEffect(() => {
+    if (!showIntro) {
+      const timer = setTimeout(() => setShowArchitecture(true), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [showIntro]);
+
+  useEffect(() => {
+    if (!showArchitecture) {
+      const timer = setTimeout(() => setShowIntro(true), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [showArchitecture]);
+
+  return (
+    <main className="flex h-screen w-screen flex-col items-center justify-between overflow-hidden">
+      <div className="relative z-[10] flex flex-grow items-center justify-center">
+        <AnimatePresence mode="sync">
+          {showIntro && (
+            <Section isVisible={showIntro} onNext={setShowIntro}>
+              Enter
+            </Section>
+          )}
+          {showArchitecture && (
+            <Section isVisible={showArchitecture} onNext={setShowArchitecture}>
+              Architecture
+            </Section>
+          )}
+          {/* Additional sections can be added here similarly */}
+        </AnimatePresence>
+      </div>
     </main>
   );
 }

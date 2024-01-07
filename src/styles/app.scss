@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$primary: #7B3B07;
+$secondary: #ffac43;
+$tertiary: #454545;
+$accent: #79A9C3;
+
+@layer base {
+  body {
+    @apply bg-black;
+  }
+}
+
+@layer components {
+  .btn-enter {
+    @apply hover:btn-glow scale-90 text-5xl uppercase text-white transition hover:scale-105 hover:text-primary;
+  }
+
+  @keyframes text-glow {
+    0%,
+    100% {
+      text-shadow:
+        0 0 8px $secondary,
+        0 0 10px $secondary,
+        0 0 12px $secondary;
+    }
+    50% {
+      text-shadow:
+        0 0 4px $secondary,
+        0 0 6px $secondary,
+        0 0 8px $secondary;
+    }
+  }
+  .btn-glow {
+    @apply text-white;
+    animation: text-glow 2s ease-in-out infinite;
+  }
+}
