@@ -66,7 +66,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-between overflow-hidden">
+    <main className="flex h-screen w-screen flex-col items-center justify-between overflow-hidden select-none">
       <div className="relative z-[10] flex flex-grow items-center justify-center">
         <AnimatePresence mode="sync">
           {sections.map(

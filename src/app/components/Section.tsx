@@ -16,7 +16,7 @@ export default function Section({
     <SectionTransition isVisible={isVisible}>
       <div
         className={`${
-          isVisible ? "relative flex h-[564px] w-[1043px] bg-slate-700" : ""
+          isVisible ? "relative flex h-[auto] w-[auto] bg-slate-700" : ""
         }`}
       >
         {isVisible && (
