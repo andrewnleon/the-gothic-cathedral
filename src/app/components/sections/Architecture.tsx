@@ -1,98 +1,263 @@
 import Image from "next/image";
-import React, { useRef } from "react";
-import useDraggable from "@/app/lib/hooks/useDraggable";
-import DraggableItem from "../Modules/DraggableItem";
-import DraggableRefTarget from "../Modules/DraggableRefTarget";
+import React, { useEffect, useRef, useState } from "react";
+import useDrag from "@app/lib/hooks/useDrag";
+import DragRefTarget from "@app/components/actions/DragRefTarget";
+import DraggableLabelItem from "@app/components/actions/DragLabelItem";
+import InfoWindow from "@app/components/Widgets/InfoWindow";
 
-export default function Architecture() {
+import {
+  flyingButtressesText,
+  gargoyaleText,
+  glassWindowText,
+  gothicVaultText,
+  roofText,
+} from "@app/content";
+import ContinueBtn from "@app/components/buttons/ContinueBtn";
+import InfoWindowHelp from "../Widgets/InfoWindowHelp";
+
+export default function Architecture({ showNextSlide }: any) {
   const glassWindowTargetRef = useRef<HTMLDivElement>(null);
   const gargoyalesTargetRef = useRef<HTMLDivElement>(null);
   const gothicVaultTargetRef = useRef<HTMLDivElement>(null);
   const flyingButtressesTargetRef = useRef<HTMLDivElement>(null);
   const roofTargetRef = useRef<HTMLDivElement>(null);
+
+  // Drag Items
   const {
     isDropped: isDroppedGlassWindow,
     x: xGlassWindow,
     y: yGlassWindow,
     handleDragEnd: handleDragEndGlassWindow,
-  } = useDraggable(
+  } = useDrag(
     glassWindowTargetRef,
-    80, // elementWidth
-    95, // elementHeight
+    50, // elementWidth
+    50, // elementHeight
     -10, // initialX
     15, // initialY
   );
 
-  const { isDropped, x, y, handleDragEnd } = useDraggable(
+  const {
+    isDropped: isDroppedGargoyales,
+    x: xGargoyales,
+    y: yGargoyales,
+    handleDragEnd: handleDragEndGargoyales,
+  } = useDrag(
     gargoyalesTargetRef,
-    80, // elementWidth
-    95, // elementHeight
+    50, // elementWidth
+    50, // elementHeight
     90, // initialX
     -20, // initialY
   );
-  // absolute left-[273px] top-[30px] h-[160px] w-[88px] bg-yellow-500
+
+  const {
+    isDropped: isDroppedFlyingButtresses,
+    x: xFlyingButtresses,
+    y: yFlyingButtresses,
+    handleDragEnd: handleDragEndFlyingButtresses,
+  } = useDrag(
+    flyingButtressesTargetRef,
+    50, // elementWidth
+    50, // elementHeight
+    -10, // initialX
+    15, // initialY
+  );
+
+  const {
+    isDropped: isDroppedGothicVault,
+    x: xGothicVault,
+    y: yGothicVault,
+    handleDragEnd: handleDragEndGothicVault,
+  } = useDrag(
+    gothicVaultTargetRef,
+    50, // elementWidth
+    50, // elementHeight
+    20, // initialX
+    15, // initialY
+  );
+
+  const {
+    isDropped: isDroppedRoof,
+    x: xRoof,
+    y: yRoof,
+    handleDragEnd: handleDragEndRoof,
+  } = useDrag(
+    roofTargetRef,
+    50, // elementWidth
+    50, // elementHeight
+    20, // initialX
+    15, // initialY
+  );
+
+  //Count Completions
+  const [isContinue, setIsContinue] = useState<boolean>(false);
+  const [completedCount, setCompletedCount] = useState<number>(0);
+  const hasCompletedCount = completedCount === 5;
+
+  useEffect(() => {
+    const count = [
+      isDroppedGlassWindow,
+      isDroppedGargoyales,
+      isDroppedFlyingButtresses,
+      isDroppedGothicVault,
+      isDroppedRoof,
+    ].filter((isDropped) => isDropped).length;
+    setCompletedCount(count);
+
+    if (completedCount === 5) {
+      if (isContinue === true) {
+        showNextSlide();
+      }
+    }
+  }, [
+    isDroppedGlassWindow,
+    isDroppedGargoyales,
+    isDroppedFlyingButtresses,
+    isDroppedGothicVault,
+    isDroppedRoof,
+    completedCount,
+    showNextSlide,
+    isContinue,
+  ]);
+
+  const [infoWindowText, setInfoWindowText] = useState<string>("");
+  useEffect(() => {
+    if (isDroppedGlassWindow) {
+      setInfoWindowText(glassWindowText);
+    }
+    if (isDroppedGargoyales) {
+      setInfoWindowText(gargoyaleText);
+    }
+    if (isDroppedFlyingButtresses) {
+      setInfoWindowText(flyingButtressesText);
+    }
+    if (isDroppedGothicVault) {
+      setInfoWindowText(gothicVaultText);
+    }
+    if (isDroppedRoof) {
+      setInfoWindowText(roofText);
+    }
+  }, [
+    isDroppedFlyingButtresses,
+    isDroppedGargoyales,
+    isDroppedGlassWindow,
+    isDroppedGothicVault,
+    isDroppedRoof,
+  ]);
+
   return (
     <div className="flex items-center justify-center">
       <div className="relative h-[564px] w-[1043px]">
         <div className="absolute left-1/2 top-1/2 z-50 h-[564px] w-[823px] -translate-x-1/2 -translate-y-1/2 transform px-1">
-          <div className="absolute left-[5px] top-[120px] h-[360px] w-[620px] bg-white bg-opacity-15">
-            {/* Targets */}
-            <DraggableRefTarget
+          {/* Help */}
+          <InfoWindowHelp />
+
+          {/* Infowindow */}
+          <InfoWindow
+            className="absolute left-[15px] top-[130px] h-[auto] w-[240px]"
+            text={infoWindowText}
+          />
+
+          {/* Targets */}
+          <div className="absolute left-[5px] top-[120px] h-[360px] w-[620px] bg-white bg-opacity-0">
+            <DragRefTarget
               id="glassWindowTarget"
               ref={glassWindowTargetRef}
-              className="target-area absolute left-[285px] top-[190px] h-[75px] w-[80px] bg-red-500 bg-opacity-0"
+              className="absolute left-[301px] top-[189px] h-[50px] w-[50px] bg-red-500 bg-opacity-10"
             />
-            <DraggableRefTarget
+            <DragRefTarget
               id="gargoyalesTarget"
               ref={gargoyalesTargetRef}
-              className="absolute left-[273px] top-[30px] h-[160px] w-[88px] bg-yellow-500 bg-opacity-0"
+              className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
+            />
+            <DragRefTarget
+              id="gothicVaultTarget"
+              ref={gothicVaultTargetRef}
+              className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
+            />
+            <DragRefTarget
+              id="flyingButtressesTarget"
+              ref={flyingButtressesTargetRef}
+              className="absolute left-[430px] top-[220px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
+            />
+            <DragRefTarget
+              id="roofTarget"
+              ref={roofTargetRef}
+              className="absolute left-[170px] top-[180px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
             />
           </div>
+
+          {/* Drags */}
           <div className="absolute right-[12px] top-[130px] h-[350px] w-[171px] bg-white bg-opacity-0">
-            {/* Draggables */}
-            <div className="relative left-[5px] top-[10px] z-10 h-[10px] w-[80px] text-center text-[10px] text-white">
-              Glass Window
-            </div>
-            <DraggableItem
+            {/* Glass Window */}
+            <DraggableLabelItem
               id="glassWindow"
+              label="Glass Window"
+              labelClassName="relative left-[5px] top-[2px] z-10 h-[10px] w-[80px] text-center text-[10px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag1.png')]"
               handleDragEnd={handleDragEndGlassWindow}
               isDropped={isDroppedGlassWindow}
               x={xGlassWindow}
               y={yGlassWindow}
-              className="absolute left-[12px] top-[-4px] h-[75px] w-[80px] bg-red-500 bg-opacity-0 bg-bottom bg-no-repeat pt-[5px]"
+              itemClassName="absolute left-[30px] top-[0px] h-[76px] w-[49px] bg-red-500 bg-opacity-0 bg-cover"
             />
-            <div
+            {/* Gargoyales */}
+            <DraggableLabelItem
               id="gargoyales"
-              className="absolute left-[87px] top-[4px] z-10 h-[10px] w-[80px] bg-yellow-500 bg-opacity-0 pt-[5px] text-center text-[10px] text-white"
-            >
-              Gargoyales
-            </div>
-            <DraggableItem
-              id="gargoyales"
+              label="Gargoyales"
+              labelClassName="absolute left-[87px] top-[-3px] z-10 h-[10px] w-[80px] bg-yellow-500 bg-opacity-0 pt-[5px] text-center text-[10px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag2.png')]"
-              handleDragEnd={handleDragEnd}
-              isDropped={isDropped}
-              x={x}
-              y={y}
-              className="absolute left-[0px] top-[20px] h-[95px] w-[80px]  pt-[5px] text-center text-[10px] text-white"
+              handleDragEnd={handleDragEndGargoyales}
+              isDropped={isDroppedGargoyales}
+              x={xGargoyales}
+              y={yGargoyales}
+              itemClassName="absolute left-[20px] top-[35px] h-[77px] w-[42px] bg-yellow-500 bg-opacity-0 bg-cover"
             />
-
-            {/* <div
-              id="gargoyales"
-              className="absolute left-[87px] top-[4px] h-[95px] w-[80px] bg-yellow-500 pt-[5px] text-center text-[10px] text-white"
-            >
-              Gargoyales
-              <div className="flex justify-center pt-1">
-                <Image
-                  src="/images/architecture/architecture_drag2.png"
-                  width={38}
-                  height={45}
-                  alt="Glass Window"
-                />
-              </div>
-            </div> */}
+            {/* Flying Buttresses */}
+            <DraggableLabelItem
+              id="flyingbuttresses"
+              label="Flying Buttresses"
+              labelClassName="relative left-[5px] top-[95px] z-10 h-[10px] w-[80px] text-center text-[8px] text-white"
+              dragItemImage="bg-[url('/images/architecture/architecture_drag5.png')]"
+              handleDragEnd={handleDragEndFlyingButtresses}
+              isDropped={isDroppedFlyingButtresses}
+              x={xFlyingButtresses}
+              y={yFlyingButtresses}
+              itemClassName="absolute left-[17px] top-[100px] h-[70px] w-[70px] bg-blue-500 bg-opacity-0 bg-cover"
+            />
+            {/* Gothic Vault */}
+            <DraggableLabelItem
+              id="gothicVault"
+              label="Gothic Vault"
+              labelClassName="relative left-[90px] top-[85px] z-10 h-[57px] w-[77px] text-center text-[10px] text-white"
+              dragItemImage="bg-[url('/images/architecture/architecture_drag4.png')]"
+              handleDragEnd={handleDragEndGothicVault}
+              isDropped={isDroppedGothicVault}
+              x={xGothicVault}
+              y={yGothicVault}
+              itemClassName="absolute left-[70px] top-[105px] h-[105px] w-[75px] bg-green-500 bg-opacity-0 bg-cover"
+            />
+            {/* Roof */}
+            <DraggableLabelItem
+              id="Roof"
+              label="Roof"
+              labelClassName="relative left-[-15px] top-[160px] z-10 h-[57px] w-[77px] text-center text-[10px] text-white"
+              dragItemImage="bg-[url('/images/architecture/architecture_drag3.png')]"
+              handleDragEnd={handleDragEndRoof}
+              isDropped={isDroppedRoof}
+              x={xRoof}
+              y={yRoof}
+              itemClassName="absolute left-[-10px] top-[225px] h-[35px] w-[152px] bg-orange-500 bg-opacity-0 bg-cover"
+            />
           </div>
+
+          {/* Continue  */}
+          {hasCompletedCount && (
+            <ContinueBtn
+              className=""
+              onClick={() => setIsContinue(true)}
+              isPending={hasCompletedCount}
+            />
+          )}
         </div>
         <Image
           src="/images/architecture/architecture.png"

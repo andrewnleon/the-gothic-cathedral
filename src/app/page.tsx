@@ -55,18 +55,53 @@ export default function Home() {
   };
 
   const sections = [
-    { label: "Intro", isVisible: showIntro, content: <Intro />, showButton: true },
-    { label: "Architecture", isVisible: showArchitecture, content: <Architecture />, showButton: true },
-    { label: "Gargoyales", isVisible: showGargoyales, content: <Gargoyales />, showButton: true },
-    { label: "Flying Buttresses", isVisible: showFlyingButtresses, content: <FlyingButtresses />, showButton: true },
-    { label: "Gothic Vault", isVisible: showGothicVault, content: <GothicVault />, showButton: true },
+    {
+      label: "Intro",
+      isVisible: showIntro,
+      content: <Intro />,
+      showButton: true,
+    },
+    {
+      label: "Architecture",
+      isVisible: showArchitecture,
+      content: <Architecture showNextSlide={goToNextSection} />,
+      showButton: false,
+    },
+    {
+      label: "Gargoyales",
+      isVisible: showGargoyales,
+      content: <Gargoyales />,
+      showButton: true,
+    },
+    {
+      label: "Flying Buttresses",
+      isVisible: showFlyingButtresses,
+      content: <FlyingButtresses />,
+      showButton: true,
+    },
+    {
+      label: "Gothic Vault",
+      isVisible: showGothicVault,
+      content: <GothicVault />,
+      showButton: true,
+    },
     { label: "Roof", isVisible: showRoof, content: <Roof />, showButton: true },
-    { label: "Stained Glass Window", isVisible: showStainedGlassWindow, content: <StainedGlassWindow />, showButton: true },
-    { label: "Thank You", isVisible: showOutro, content: <ThankYou />, showButton: true },
+    {
+      label: "Stained Glass Window",
+      isVisible: showStainedGlassWindow,
+      content: <StainedGlassWindow />,
+      showButton: true,
+    },
+    {
+      label: "Thank You",
+      isVisible: showOutro,
+      content: <ThankYou />,
+      showButton: true,
+    },
   ];
 
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-between overflow-hidden select-none">
+    <main className="flex h-screen w-screen select-none flex-col items-center justify-between overflow-hidden">
       <div className="relative z-[10] flex flex-grow items-center justify-center">
         <AnimatePresence mode="sync">
           {sections.map(

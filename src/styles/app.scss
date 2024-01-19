@@ -18,6 +18,16 @@ $accent: #79A9C3;
     @apply hover:btn-glow scale-90 text-5xl uppercase text-white transition hover:scale-105 hover:text-primary;
   }
 
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  .blink {
+    animation: blink 2s linear infinite;
+  }
+
   @keyframes text-glow {
     0%,
     100% {
