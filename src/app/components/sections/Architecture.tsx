@@ -1,80 +1,84 @@
 import Image from "next/image";
 import React, { useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import useDraggable from "@/app/lib/hooks/useDraggable";
+import DraggableItem from "../Modules/DraggableItem";
+import DraggableRefTarget from "../Modules/DraggableRefTarget";
 
 export default function Architecture() {
   const glassWindowTargetRef = useRef<HTMLDivElement>(null);
+  const gargoyalesTargetRef = useRef<HTMLDivElement>(null);
+  const gothicVaultTargetRef = useRef<HTMLDivElement>(null);
+  const flyingButtressesTargetRef = useRef<HTMLDivElement>(null);
+  const roofTargetRef = useRef<HTMLDivElement>(null);
+  const {
+    isDropped: isDroppedGlassWindow,
+    x: xGlassWindow,
+    y: yGlassWindow,
+    handleDragEnd: handleDragEndGlassWindow,
+  } = useDraggable(
+    glassWindowTargetRef,
+    80, // elementWidth
+    95, // elementHeight
+    -10, // initialX
+    15, // initialY
+  );
 
-  const handleGlassWindowDragEnd = (event: any, info: { point: { x: number; y: number; }; }) => {
-    if (glassWindowTargetRef.current) {
-      const targetRect = glassWindowTargetRef.current.getBoundingClientRect();
-      const draggableLeft = info.point.x;
-      const draggableTop = info.point.y;
-      const draggableRight = draggableLeft + 80; // Width of the draggable element
-      const draggableBottom = draggableTop + 95; // Height of the draggable element
-
-      // Check if any part of the draggable element overlaps with the target
-      const isOverlapping =
-        draggableLeft < targetRect.right &&
-        draggableRight > targetRect.left &&
-        draggableTop < targetRect.bottom &&
-        draggableBottom > targetRect.top;
-
-      if (isOverlapping) {
-        console.log("Dropped in the target!");
-        // Logic for successful drop
-      } else {
-        console.log("Dropped outside the target.");
-        // Logic for unsuccessful drop
-      }
-    }
-  };
-
+  const { isDropped, x, y, handleDragEnd } = useDraggable(
+    gargoyalesTargetRef,
+    80, // elementWidth
+    95, // elementHeight
+    90, // initialX
+    -20, // initialY
+  );
+  // absolute left-[273px] top-[30px] h-[160px] w-[88px] bg-yellow-500
   return (
     <div className="flex items-center justify-center">
       <div className="relative h-[564px] w-[1043px]">
         <div className="absolute left-1/2 top-1/2 z-50 h-[564px] w-[823px] -translate-x-1/2 -translate-y-1/2 transform px-1">
           <div className="absolute left-[5px] top-[120px] h-[360px] w-[620px] bg-white bg-opacity-15">
             {/* Targets */}
-            <div
+            <DraggableRefTarget
               id="glassWindowTarget"
               ref={glassWindowTargetRef}
-              className="target-area absolute left-[275px] top-[190px] h-[75px] w-[88px] bg-red-500"
-            ></div>
-            <div
+              className="target-area absolute left-[285px] top-[190px] h-[75px] w-[80px] bg-red-500 bg-opacity-0"
+            />
+            <DraggableRefTarget
               id="gargoyalesTarget"
-              className="absolute left-[273px] top-[30px] h-[160px] w-[88px] bg-yellow-500"
-            ></div>
-            <div
-              id="gothicVaultTarget"
-              className="absolute left-[455px] top-[75px] h-[235px] w-[150px] bg-green-500"
-            ></div>
-            <div
-              id="flyingButtressesTarget"
-              className="absolute left-[363px] top-[190px] h-[135px] w-[145px] bg-blue-500"
-            ></div>
-            <div
-              id="roofTarget"
-              className="absolute left-[100px] top-[190px] h-[100px] w-[175px] bg-orange-500"
-            ></div>
+              ref={gargoyalesTargetRef}
+              className="absolute left-[273px] top-[30px] h-[160px] w-[88px] bg-yellow-500 bg-opacity-0"
+            />
           </div>
           <div className="absolute right-[12px] top-[130px] h-[350px] w-[171px] bg-white bg-opacity-0">
-
             {/* Draggables */}
             <div className="relative left-[5px] top-[10px] z-10 h-[10px] w-[80px] text-center text-[10px] text-white">
               Glass Window
             </div>
-            <motion.div
-              drag
-              onDragEnd={handleGlassWindowDragEnd}
-              className="absolute left-[4px] top-[4px] h-[95px] w-[80px] bg-red-500 bg-opacity-0 bg-[url('/images/architecture/architecture_drag1.png')] bg-bottom bg-no-repeat pt-[5px]
-              "
-            >
-              <motion.div className="flex justify-center pt-1" />
-            </motion.div>
-
-
+            <DraggableItem
+              id="glassWindow"
+              dragItemImage="bg-[url('/images/architecture/architecture_drag1.png')]"
+              handleDragEnd={handleDragEndGlassWindow}
+              isDropped={isDroppedGlassWindow}
+              x={xGlassWindow}
+              y={yGlassWindow}
+              className="absolute left-[12px] top-[-4px] h-[75px] w-[80px] bg-red-500 bg-opacity-0 bg-bottom bg-no-repeat pt-[5px]"
+            />
             <div
+              id="gargoyales"
+              className="absolute left-[87px] top-[4px] z-10 h-[10px] w-[80px] bg-yellow-500 bg-opacity-0 pt-[5px] text-center text-[10px] text-white"
+            >
+              Gargoyales
+            </div>
+            <DraggableItem
+              id="gargoyales"
+              dragItemImage="bg-[url('/images/architecture/architecture_drag2.png')]"
+              handleDragEnd={handleDragEnd}
+              isDropped={isDropped}
+              x={x}
+              y={y}
+              className="absolute left-[0px] top-[20px] h-[95px] w-[80px]  pt-[5px] text-center text-[10px] text-white"
+            />
+
+            {/* <div
               id="gargoyales"
               className="absolute left-[87px] top-[4px] h-[95px] w-[80px] bg-yellow-500 pt-[5px] text-center text-[10px] text-white"
             >
@@ -87,55 +91,9 @@ export default function Architecture() {
                   alt="Glass Window"
                 />
               </div>
-            </div>
-
-            <div
-              id="gargoyales"
-              className="absolute left-[5px] top-[104px] h-[95px] w-[80px] bg-blue-500 pt-[5px] text-center text-[9px] text-white"
-            >
-              Flying Buttresses
-              <div className="flex justify-center pt-1">
-                <Image
-                  src="/images/architecture/architecture_drag5.png"
-                  width={75}
-                  height={45}
-                  alt="Glass Window"
-                />
-              </div>
-            </div>
-
-            <div
-              id="gargoyales"
-              className="absolute left-[87px] top-[104px] h-[95px] w-[80px] bg-green-500 pt-[5px] text-center text-[10px] text-white"
-            >
-              Gothic Vault
-              <div className="flex justify-center pt-1">
-                <Image
-                  src="/images/architecture/architecture_drag4.png"
-                  width={40}
-                  height={45}
-                  alt="Glass Window"
-                />
-              </div>
-            </div>
-
-            <div
-              id="gargoyales"
-              className="absolute left-[5px] top-[204px] h-[70px] w-[162px] bg-orange-500 pt-[5px] text-center text-[10px] text-white"
-            >
-              Roof
-              <div className="flex justify-center pt-1">
-                <Image
-                  src="/images/architecture/architecture_drag3.png"
-                  width={120}
-                  height={75}
-                  alt="Roof"
-                />
-              </div>
-            </div>
+            </div> */}
           </div>
         </div>
-
         <Image
           src="/images/architecture/architecture.png"
           width={816}
