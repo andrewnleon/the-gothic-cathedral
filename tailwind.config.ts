@@ -13,6 +13,14 @@ const config: Config = {
           position: "fixed", // This helps especially on iOS devices
           width: "100%", // To prevent width changes when the scrollbar disappears
         },
+        grayscale: {
+          100: '50%',
+        },
+      },
+      variants: {
+        extend: {
+          grayscale: ['responsive', 'hover', 'focus'],
+        },
       },
       fontFamily: {
         primary: ["Roboto", "sans-serif"], // Roboto as the primary, sans-serif as the fallback.

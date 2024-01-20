@@ -5,7 +5,7 @@ import { MotionValue, PanInfo } from 'framer-motion';
 type DraggableLabelItemProps = {
   id: string;
   label: string;
-  handleDragEnd: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => Promise<void>;
+  handleDragEnd: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void;
   isDropped: boolean;
   x: MotionValue<number>;
   y: MotionValue<number>;

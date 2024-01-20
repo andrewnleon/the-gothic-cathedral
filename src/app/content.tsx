@@ -1,8 +1,13 @@
-export const glassWindowText = "Text 1";
-export const gargoyaleText = "Text 2";
-export const flyingButtressesText = "Text 3";
-export const gothicVaultText = "Text 4";
-export const roofText = "Text 5";
+export const glassWindowText =
+  "There are over 200 hundred glass windows located in the cathedral. The design of a window incorporates narratives drawn from the Bible, history, or literature; may represent saints or patrons, or use symbolic motifs, in particular armorial.";
+export const gargoyaleText =
+  "The gargoyles were built to look like frightening creatures to fight evil spirits from entering. They are also used as gutters to drain out water from rain.";
+export const flyingButtressesText =
+  "The flying buttress helps support the cathedral from outside. If there were no flying buttress, then the walls would begin to lean outwards from the pressure of the vaults and the cathedral would eventually collapse.";
+export const gothicVaultText =
+  "The Gothic vaults have to be built precisely in order to avoid collapsing. With wedge-shaped stones called voussoiros. The vaults have enormous amounts of pressure and columns or piers spread the pressure out for more support to the foundation.";
+export const roofText =
+  "The roof is constructed of lead, tile and slate. These materials are lighter and help avoid collapsing.";
 
 //Help
 export const infoWindowHelpText = `

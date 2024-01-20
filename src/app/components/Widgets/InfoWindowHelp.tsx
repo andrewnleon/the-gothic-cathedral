@@ -18,12 +18,11 @@ function InfoWindowHelp() {
       >
         Help?
       </button>
-
       <div
-        className={`absolute left-[580px] top-[120px] z-20 h-[auto] w-[240px]`}
+        className={`absolute left-[580px] top-[120px] z-50 h-[auto] w-[240px] ${isHovered ? "opacity-100" : "-z-0 opacity-0"}`}
       >
         <InfoWindow
-          className={`h-[auto] w-[240px] text-nowrap border-[1px] transition-opacity duration-500 ${!isHovered ? "opacity-100" : "opacity-0"}`}
+          className={`h-[auto] w-[240px] text-nowrap border-[1px] transition-opacity duration-500`}
           text={infoWindowHelpText}
         />
       </div>
