@@ -10,6 +10,7 @@ $accent: #79A9C3;
 @layer base {
   body {
     @apply bg-black font-default;
+    letter-spacing: 0.2rem;
   }
   p {
     @apply font-secondary;
@@ -17,6 +18,8 @@ $accent: #79A9C3;
 }
 
 @layer components {
+
+
   @font-face {
     font-family: 'TrajanBricks';
     src: url('../../public/fonts/TrajanusBricks.ttf') format('truetype');

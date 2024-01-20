@@ -4,6 +4,7 @@
 @layer base {
   body {
     @apply bg-black font-default;
+    letter-spacing: 0.2rem;
   }
   p {
     @apply font-secondary;

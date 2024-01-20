@@ -1,14 +1,14 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { MotionValue, motion } from "framer-motion";
 
 type Props = {
-  id: any;
-  isDropped: any;
-  x: any;
-  y: any;
+  id: string;
+  isDropped: boolean;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
   handleDragEnd: any;
-  dragItemImage: any;
-  className: any;
+  dragItemImage: string;
+  className: string;
 };
 
 export default function DraggableItem({
@@ -23,13 +23,13 @@ export default function DraggableItem({
   return (
     <motion.div
       id={id}
-      drag={!isDropped} // Disable drag if the item is dropped on the target
-      style={{ x, y }} // Disable pointer events when dropped
+      drag={!isDropped}
+      style={{ x, y }}
       animate={{ opacity: isDropped ? 0 : 1 }}
       transition={{
-        type: "tween", // Use a tween transition
-        ease: "easeOut", // Easing function (easeOut, easeIn, linear, etc.)
-        duration: 0.5, // Duration of the transition (in seconds)
+        type: "tween",
+        ease: "easeOut",
+        duration: 0.5,
       }}
       dragMomentum={false}
       dragElastic={0}
