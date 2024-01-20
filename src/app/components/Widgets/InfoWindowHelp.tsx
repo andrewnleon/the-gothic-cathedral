@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { infoWindowHelpText } from "@app/content";
-import InfoWindow from "@app/components/widgets/InfoWindow";
 import { motion } from "framer-motion";
+import InfoWindow from "./InfoWindow";
 
-function InfoWindowHelp() {
+export default function InfoWindowHelp() {
   const [isHovered, setIsHovered] = useState(false);
 
   const toggleInfoWindow = () => {
@@ -30,5 +30,3 @@ function InfoWindowHelp() {
     </>
   );
 }
-
-export default InfoWindowHelp;
