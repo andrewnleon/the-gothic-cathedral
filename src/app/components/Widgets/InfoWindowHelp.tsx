@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import InfoWindow from "./InfoWindow";
 import { infoWindowHelpText } from "@app/content";
+import InfoWindow from "./InfoWindow";
 
 function InfoWindowHelp() {
   const [isHovered, setIsHovered] = useState(false);
@@ -19,7 +19,7 @@ function InfoWindowHelp() {
         Help?
       </button>
       <div
-        className={`absolute left-[580px] top-[120px] z-50 h-[auto] w-[240px] ${isHovered ? "opacity-100" : "-z-0 opacity-0"}`}
+        className={`absolute left-[580px] top-[120px] z-50 h-[auto] w-[240px] ${isHovered ? "z-20 opacity-100" : " z-[-1] opacity-0"}`}
       >
         <InfoWindow
           className={`h-[auto] w-[240px] text-nowrap border-[1px] transition-opacity duration-500`}
