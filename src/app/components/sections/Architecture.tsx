@@ -11,10 +11,10 @@ import {
   roofText,
 } from "@app/content";
 import ContinueBtn from "@app/components/buttons/ContinueBtn";
-import InfoWindow from "@app/components/widgets/InfoWindow";
 import InfoWindowHelp from "@app/components/widgets/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
+import InfoWindow from "../widgets/InfoWindow";
 
 export default function Architecture({ showNextSlide }: any) {
   const glassWindowTargetRef = useRef<HTMLDivElement>(null);
