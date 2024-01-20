@@ -10,11 +10,11 @@ import {
   gothicVaultText,
   roofText,
 } from "@app/content";
-import ContinueBtn from "@app/components/buttons/ContinueBtn";
+import ContinueBtn from "@app/components/modules/ContinueBtn";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
-import InfoWindow from "../InfoWindow";
-import InfoWindowHelp from "../InfoWindowHelp";
+import InfoWindow from "../modules/InfoWindow";
+import InfoWindowHelp from "../modules/InfoWindowHelp";
 
 export default function Architecture({ showNextSlide }: any) {
   const glassWindowTargetRef = useRef<HTMLDivElement>(null);
@@ -155,35 +155,35 @@ export default function Architecture({ showNextSlide }: any) {
               id="glassWindowTarget"
               isDropped={isDroppedGlassWindow}
               ref={glassWindowTargetRef}
-              className="absolute left-[301px] top-[189px] h-[50px] w-[50px] bg-red-500 bg-opacity-0"
+              className="absolute left-[301px] top-[189px] h-[50px] w-[50px] bg-red-500 bg-opacity-100"
             />
             <DragRefTarget
               key="gargoyalesTarget"
               id="gargoyalesTarget"
               isDropped={isDroppedGargoyales}
               ref={gargoyalesTargetRef}
-              className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
+              className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-100"
             />
             <DragRefTarget
               key="gothicVaultTarget"
               id="gothicVaultTarget"
               isDropped={isDroppedGothicVault}
               ref={gothicVaultTargetRef}
-              className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
+              className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-100"
             />
             <DragRefTarget
               key="flyingButtressesTarget"
               id="flyingButtressesTarget"
               isDropped={isDroppedFlyingButtresses}
               ref={flyingButtressesTargetRef}
-              className="absolute left-[430px] top-[220px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
+              className="absolute left-[430px] top-[220px] h-[50px] w-[50px] bg-blue-500 bg-opacity-100"
             />
             <DragRefTarget
               key="roofTarget"
               id="roofTarget"
               isDropped={isDroppedRoof}
               ref={roofTargetRef}
-              className="absolute left-[170px] top-[180px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
+              className="absolute left-[170px] top-[180px] h-[50px] w-[50px] bg-orange-500 bg-opacity-100"
             />
           </div>
 
@@ -194,7 +194,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="glassWindow"
               id="glassWindow"
               label="Glass Window"
-              labelClassName="relative left-[5px] top-[5px] z-10 h-[10px] w-[80px] text-center text-[10px] text-white"
+              labelClassName="relative left-[5px] top-[5px] z-20 h-[10px] w-[80px] text-center text-[9px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag1.png')]"
               handleDragEnd={handleDragEndGlassWindowModified}
               isDropped={isDroppedGlassWindow}
@@ -220,7 +220,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="flyingbuttresses"
               id="flyingbuttresses"
               label="Flying Buttresses"
-              labelClassName="relative left-[5px] top-[95px] z-10 h-[10px] w-[80px] text-center text-[9px] text-white"
+              labelClassName="relative left-[5px] top-[95px] z-20 h-[10px] w-[80px] text-center text-[9px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag5.png')]"
               handleDragEnd={handleDragEndFlyingButtressesModified}
               isDropped={isDroppedFlyingButtresses}
@@ -233,7 +233,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="gothicVault"
               id="gothicVault"
               label="Gothic Vault"
-              labelClassName="relative left-[90px] top-[85px] z-10 h-[57px] w-[77px] text-center text-[9px] text-white"
+              labelClassName="relative left-[90px] top-[85px] z-20 h-[57px] w-[77px] text-center text-[9px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag4.png')]"
               handleDragEnd={handleDragEndGothicVaultModified}
               isDropped={isDroppedGothicVault}
