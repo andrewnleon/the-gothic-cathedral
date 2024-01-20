@@ -27,7 +27,9 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
 }) => (
   <>
     <div id={`${id}-label`} className={labelClassName}>
-      {label}
+      <p>
+        {label}
+      </p>
     </div>
     <DragItem
       id={id}

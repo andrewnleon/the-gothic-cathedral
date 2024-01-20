@@ -12,7 +12,7 @@ export default function InfoWindow({ className, text }: infoWindowProps) {
     <motion.div
       className={
         className +
-        ` border-[1px] border-secondary border-opacity-50 bg-primary bg-opacity-90 p-2 text-[13px] text-secondary`
+        ` border-[1px] border-secondary border-opacity-50 bg-primary bg-opacity-95 p-2 text-[13px] text-secondary`
       }
     >
       <AnimatePresence mode="wait">
@@ -23,7 +23,7 @@ export default function InfoWindow({ className, text }: infoWindowProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div dangerouslySetInnerHTML={{ __html: text }} />
+          <p dangerouslySetInnerHTML={{ __html: text }} />
         </motion.div>
       </AnimatePresence>
     </motion.div>

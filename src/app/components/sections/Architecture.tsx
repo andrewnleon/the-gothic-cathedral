@@ -4,7 +4,13 @@ import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
 import DraggableLabelItem from "@app/components/actions/DragLabelItem";
 import InfoWindow from "@app/components/widgets/InfoWindow";
-import { gargoyaleText, glassWindowText, flyingButtressesText, gothicVaultText, roofText, } from "@app/content";
+import {
+  gargoyaleText,
+  glassWindowText,
+  flyingButtressesText,
+  gothicVaultText,
+  roofText,
+} from "@app/content";
 import ContinueBtn from "@app/components/buttons/ContinueBtn";
 import InfoWindowHelp from "@app/components/widgets/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
@@ -77,7 +83,7 @@ export default function Architecture({ showNextSlide }: any) {
     50, // elementWidth
     50, // elementHeight
     20, // initialX
-    15, // initialY
+    25, // initialY
   );
 
   // Count Completions
@@ -188,7 +194,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="glassWindow"
               id="glassWindow"
               label="Glass Window"
-              labelClassName="relative left-[5px] top-[2px] z-10 h-[10px] w-[80px] text-center text-[10px] text-white"
+              labelClassName="relative left-[5px] top-[5px] z-10 h-[10px] w-[80px] text-center text-[10px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag1.png')]"
               handleDragEnd={handleDragEndGlassWindowModified}
               isDropped={isDroppedGlassWindow}
@@ -201,7 +207,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="gargoyales"
               id="gargoyales"
               label="Gargoyales"
-              labelClassName="absolute left-[87px] top-[-3px] z-10 h-[10px] w-[80px] bg-yellow-500 bg-opacity-0 pt-[5px] text-center text-[10px] text-white"
+              labelClassName="absolute left-[87px] top-[0px] z-10 h-[10px] w-[80px] bg-yellow-500 bg-opacity-0 pt-[5px] text-center text-[10px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag2.png')]"
               handleDragEnd={handleDragEndGargoyalesModified}
               isDropped={isDroppedGargoyales}
@@ -214,7 +220,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="flyingbuttresses"
               id="flyingbuttresses"
               label="Flying Buttresses"
-              labelClassName="relative left-[5px] top-[95px] z-10 h-[10px] w-[80px] text-center text-[8px] text-white"
+              labelClassName="relative left-[5px] top-[95px] z-10 h-[10px] w-[80px] text-center text-[9px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag5.png')]"
               handleDragEnd={handleDragEndFlyingButtressesModified}
               isDropped={isDroppedFlyingButtresses}
@@ -227,7 +233,7 @@ export default function Architecture({ showNextSlide }: any) {
               key="gothicVault"
               id="gothicVault"
               label="Gothic Vault"
-              labelClassName="relative left-[90px] top-[85px] z-10 h-[57px] w-[77px] text-center text-[10px] text-white"
+              labelClassName="relative left-[90px] top-[85px] z-10 h-[57px] w-[77px] text-center text-[9px] text-white"
               dragItemImage="bg-[url('/images/architecture/architecture_drag4.png')]"
               handleDragEnd={handleDragEndGothicVaultModified}
               isDropped={isDroppedGothicVault}

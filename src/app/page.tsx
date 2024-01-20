@@ -56,7 +56,7 @@ export default function Home() {
 
   const sections = [
     {
-      label: "Intro",
+      label: "Enter",
       isVisible: showIntro,
       content: <Intro />,
       showButton: true,

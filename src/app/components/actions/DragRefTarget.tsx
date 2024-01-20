@@ -19,10 +19,10 @@ const DraggableRefTarget = React.forwardRef<HTMLDivElement, Props>(
       >
         {!isDropped && (
           <BounceLoader
-            color="#ffac43"
+            color="#FFFFFF"
             size={20}
-            speedMultiplier={0.3}
-            className="ms-[15px] mt-[15px]"
+            speedMultiplier={0.5}
+            className="ms-[15px] mt-[15px] opacity-55"
           />
         )}
       </motion.div>
