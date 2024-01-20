@@ -13,8 +13,8 @@ import {
 import ContinueBtn from "@app/components/buttons/ContinueBtn";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
-import InfoWindow from "../widgets/InfoWindow";
-import InfoWindowHelp from "../widgets/InfoWindowHelp";
+import InfoWindow from "../InfoWindow";
+import InfoWindowHelp from "../InfoWindowHelp";
 
 export default function Architecture({ showNextSlide }: any) {
   const glassWindowTargetRef = useRef<HTMLDivElement>(null);
