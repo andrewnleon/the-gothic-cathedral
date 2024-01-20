@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { infoWindowHelpText } from "@app/content";
-import InfoWindow from "./InfoWindow";
+import InfoWindow from "@app/components/widgets/InfoWindow";
 import { motion } from "framer-motion";
 
 function InfoWindowHelp() {

@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
 import DraggableLabelItem from "@app/components/actions/DragLabelItem";
-import InfoWindow from "@app/components/widgets/InfoWindow";
 import {
   gargoyaleText,
   glassWindowText,
@@ -12,6 +11,7 @@ import {
   roofText,
 } from "@app/content";
 import ContinueBtn from "@app/components/buttons/ContinueBtn";
+import InfoWindow from "@app/components/widgets/InfoWindow";
 import InfoWindowHelp from "@app/components/widgets/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
