@@ -71,7 +71,7 @@ export default function Home() {
       label: "Gargoyales",
       isVisible: showGargoyales,
       content: <Gargoyales />,
-      showButton: true,
+      showButton: false,
     },
     {
       label: "Flying Buttresses",

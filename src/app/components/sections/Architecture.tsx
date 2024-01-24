@@ -3,6 +3,11 @@ import React, { useRef, useState } from "react";
 import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
 import DraggableLabelItem from "@app/components/actions/DragLabelItem";
+import ContinueBtn from "@app/components/modules/ContinueBtn";
+import InfoWindow from "@app/components/modules/InfoWindow";
+import InfoWindowHelp from "@app/components/modules/InfoWindowHelp";
+import useCompletionCount from "@app/lib/hooks/useCompletionCount";
+import { useHandlers } from "@app/lib/handlers";
 import {
   gargoyaleText,
   glassWindowText,
@@ -10,11 +15,6 @@ import {
   gothicVaultText,
   roofText,
 } from "@app/content";
-import ContinueBtn from "@app/components/modules/ContinueBtn";
-import useCompletionCount from "@app/lib/hooks/useCompletionCount";
-import { useHandlers } from "@app/lib/handlers";
-import InfoWindow from "../modules/InfoWindow";
-import InfoWindowHelp from "../modules/InfoWindowHelp";
 
 export default function Architecture({ showNextSlide }: any) {
   const glassWindowTargetRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export default function Architecture({ showNextSlide }: any) {
   const roofTargetRef = useRef<HTMLDivElement>(null);
   const [infoWindowText, setInfoWindowText] = useState<string>("");
 
-  // Drag enabled target Items
+  //1. Drag enabled target Items
   const {
     isDropped: isDroppedGlassWindow,
     x: xGlassWindow,
@@ -86,28 +86,7 @@ export default function Architecture({ showNextSlide }: any) {
     25, // initialY
   );
 
-  // Count Completions
-  // If an action is completed to its respective target then do count
-  const [isContinue, setIsContinue] = useState(false);
-  // drop state initializers
-  const isDroppedStates = [
-    isDroppedGlassWindow,
-    isDroppedGargoyales,
-    isDroppedFlyingButtresses,
-    isDroppedGothicVault,
-    isDroppedRoof,
-  ];
-
-  // Use completion hook
-  const completedCount = useCompletionCount(
-    isDroppedStates,
-    showNextSlide,
-    isContinue,
-  );
-  // Do constraint count logic
-  const hasCompletedCount = completedCount === isDroppedStates.length;
-
-  //Define Handlers
+  //2. Define Handlers
   const dependencies = {
     handleDragEndGlassWindow,
     glassWindowTargetRef,
@@ -135,6 +114,27 @@ export default function Architecture({ showNextSlide }: any) {
     handleDragEndRoofModified,
   } = useHandlers(dependencies);
 
+  // Count Completions
+  // If an action is completed to its respective target then do count
+  const [isContinue, setIsContinue] = useState(false);
+  // drop state initializers
+  const isDroppedStates = [
+    isDroppedGlassWindow,
+    isDroppedGargoyales,
+    isDroppedFlyingButtresses,
+    isDroppedGothicVault,
+    isDroppedRoof,
+  ];
+
+  // Use completion hook
+  const completedCount = useCompletionCount(
+    isDroppedStates,
+    showNextSlide,
+    isContinue,
+  );
+  // Do constraint count logic
+  const hasCompletedCount = completedCount === isDroppedStates.length;
+
   return (
     <div className="flex items-center justify-center">
       <div className="relative h-[564px] w-[1043px]">
@@ -153,37 +153,51 @@ export default function Architecture({ showNextSlide }: any) {
             <DragRefTarget
               key="glassWindowTarget"
               id="glassWindowTarget"
+              targetBgImg="bg-[url('/images/architecture/architecture_drag1.png')] bg-no-repeat"
+              targetBgPos="absolute left-[302.5px] top-[185px] h-[100px] w-[50px]"
               isDropped={isDroppedGlassWindow}
               ref={glassWindowTargetRef}
-              className="absolute left-[301px] top-[189px] h-[50px] w-[50px] bg-red-500 bg-opacity-100"
+              className="absolute left-[296px] top-[184px] h-[50px] w-[50px] bg-red-500 bg-opacity-0"
             />
+
             <DragRefTarget
               key="gargoyalesTarget"
               id="gargoyalesTarget"
+              targetBgImg="bg-[url('/images/architecture/architecture_drag2.png')] bg-no-repeat bg-cover"
+              targetBgPos="absolute left-[274px] top-[29px] h-[135px] w-[84px]"
               isDropped={isDroppedGargoyales}
               ref={gargoyalesTargetRef}
-              className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-100"
+              className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
             />
+
             <DragRefTarget
               key="gothicVaultTarget"
               id="gothicVaultTarget"
+              targetBgImg="bg-[url('/images/architecture/architecture_drag4.png')] bg-no-repeat bg-cover "
+              targetBgPos="absolute left-[460px] top-[79px] h-[225px] w-[146px]"
               isDropped={isDroppedGothicVault}
               ref={gothicVaultTargetRef}
-              className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-100"
+              className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
             />
+
             <DragRefTarget
               key="flyingButtressesTarget"
               id="flyingButtressesTarget"
+              targetBgImg="bg-[url('/images/architecture/architecture_drag5.png')] bg-no-repeat bg-cover "
+              targetBgPos="absolute left-[350px] top-[185px] h-[125px] w-[180px]"
               isDropped={isDroppedFlyingButtresses}
               ref={flyingButtressesTargetRef}
-              className="absolute left-[430px] top-[220px] h-[50px] w-[50px] bg-blue-500 bg-opacity-100"
+              className="absolute left-[430px] top-[225px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
             />
+
             <DragRefTarget
               key="roofTarget"
               id="roofTarget"
+              targetBgImg="bg-[url('/images/architecture/architecture_drag3.png')] bg-no-repeat bg-cover "
+              targetBgPos="absolute left-[125px] top-[180px] h-[34px] w-[152px]"
               isDropped={isDroppedRoof}
               ref={roofTargetRef}
-              className="absolute left-[170px] top-[180px] h-[50px] w-[50px] bg-orange-500 bg-opacity-100"
+              className="absolute left-[170px] top-[175px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
             />
           </div>
 
@@ -202,6 +216,7 @@ export default function Architecture({ showNextSlide }: any) {
               y={yGlassWindow}
               itemClassName="absolute left-[30px] top-[0px] h-[76px] w-[49px] bg-red-500 bg-opacity-0 bg-cover"
             />
+
             {/* Gargoyales */}
             <DraggableLabelItem
               key="gargoyales"
@@ -265,6 +280,13 @@ export default function Architecture({ showNextSlide }: any) {
             />
           )}
         </div>
+        <Image
+          src="/images/angels.png"
+          className="absolute bottom-0 left-[50px] z-10 m-auto"
+          height="99"
+          width="939"
+          alt="Tray"
+        />
         <Image
           src="/images/architecture/architecture.png"
           width={816}
