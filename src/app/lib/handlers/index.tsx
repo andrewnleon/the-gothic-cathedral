@@ -1,6 +1,16 @@
 import useModifiedDragEnd from "../hooks/useDragHandler";
 
 export const useHandlers = (dependencies: any) => {
+
+  //Gargoyales
+  const handleDragEndLionModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndLion,
+    targetRef: dependencies.lionTargetRef,
+    text: dependencies.glassWindowText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+
+  //Architecture
   const handleDragEndGlassWindowModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndGlassWindow,
     targetRef: dependencies.glassWindowTargetRef,
@@ -37,6 +47,7 @@ export const useHandlers = (dependencies: any) => {
   });
 
   return {
+    handleDragEndLionModified,
     handleDragEndGlassWindowModified,
     handleDragEndGargoyalesModified,
     handleDragEndFlyingButtressesModified,

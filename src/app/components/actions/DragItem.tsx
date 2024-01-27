@@ -4,6 +4,7 @@ import { MotionValue, motion } from "framer-motion";
 type Props = {
   id: string;
   isDropped: boolean;
+  hideDragItem: boolean;
   x: MotionValue<number>;
   y: MotionValue<number>;
   handleDragEnd: any;
@@ -18,6 +19,7 @@ export default function DraggableItem({
   y,
   handleDragEnd,
   dragItemImage,
+  hideDragItem,
   className,
 }: Props) {
   return (
@@ -25,7 +27,7 @@ export default function DraggableItem({
       id={id}
       drag={!isDropped}
       style={{ x, y }}
-      animate={{ opacity: isDropped ? 0 : 1 }}
+      animate={{ opacity: isDropped || hideDragItem ? 0 : 1 }}
       transition={{
         type: "tween",
         ease: "easeOut",

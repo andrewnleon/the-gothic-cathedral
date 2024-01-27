@@ -58,7 +58,7 @@ export default function Home() {
     {
       label: "Enter",
       isVisible: showIntro,
-      content: <Intro />,
+      content: <Gargoyales />,
       showButton: true,
     },
     {

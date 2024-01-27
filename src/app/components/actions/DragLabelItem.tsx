@@ -7,6 +7,7 @@ type DraggableLabelItemProps = {
   label: string;
   handleDragEnd: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void;
   isDropped: boolean;
+  hideDragItem: boolean;
   x: MotionValue<number>;
   y: MotionValue<number>;
   dragItemImage: string;
@@ -18,6 +19,7 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
   id,
   label,
   handleDragEnd,
+  hideDragItem,
   isDropped,
   x,
   y,
@@ -33,6 +35,7 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
     </div>
     <DragItem
       id={id}
+      hideDragItem={hideDragItem}
       handleDragEnd={handleDragEnd}
       isDropped={isDropped}
       x={x}
