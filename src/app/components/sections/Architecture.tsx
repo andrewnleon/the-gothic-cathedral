@@ -139,7 +139,7 @@ export default function Architecture({ showNextSlide }: any) {
   return (
     <SectionSlide bgImage="/images/architecture/architecture.png">
       {/* Help */}
-      <InfoWindowHelp />
+      <InfoWindowHelp infoWindowTextSize="" />
       {/* Infowindow for dropped item */}
       <InfoWindow
         className="absolute left-[15px] top-[130px] z-20 w-[240px] shadow-lg"
@@ -156,6 +156,7 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos="absolute left-[302.5px] top-[185px] h-[100px] w-[50px]"
           loaderPos=""
           isDropped={isDroppedGlassWindow}
+          hideLoader={false}
           ref={glassWindowTargetRef}
           className="absolute left-[296px] top-[184px] h-[50px] w-[50px] bg-red-500 bg-opacity-0"
         />
@@ -168,6 +169,7 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos="absolute left-[274px] top-[29px] h-[135px] w-[84px]"
           loaderPos=""
           isDropped={isDroppedGargoyales}
+          hideLoader={false}
           ref={gargoyalesTargetRef}
           className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
         />
@@ -180,6 +182,7 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos="absolute left-[460px] top-[79px] h-[225px] w-[146px]"
           loaderPos=""
           isDropped={isDroppedGothicVault}
+          hideLoader={false}
           ref={gothicVaultTargetRef}
           className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
         />
@@ -192,6 +195,7 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos="absolute left-[350px] top-[185px] h-[125px] w-[180px]"
           loaderPos=""
           isDropped={isDroppedFlyingButtresses}
+          hideLoader={false}
           ref={flyingButtressesTargetRef}
           className="absolute left-[430px] top-[225px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
         />
@@ -204,6 +208,7 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos="absolute left-[125px] top-[180px] h-[34px] w-[152px]"
           loaderPos=""
           isDropped={isDroppedRoof}
+          hideLoader={false}
           ref={roofTargetRef}
           className="absolute left-[170px] top-[175px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
         />
