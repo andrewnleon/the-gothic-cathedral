@@ -9,6 +9,16 @@ export const gothicVaultText =
 export const roofText =
   "The roof is constructed of lead, tile and slate. These materials are lighter and help avoid collapsing.";
 
+export const lionText = "lionText";
+export const dogText = "dogText";
+export const wolfText = "wolfText";
+export const eagleText = "eagleText";
+export const snakeText = "snakeText";
+export const goatText = "goatText";
+export const monkeyText = "monkeyText";
+
+
+
 //Help
 export const infoWindowHelpText = `
 <b>Architecture:</b> Drag & Drop <br />

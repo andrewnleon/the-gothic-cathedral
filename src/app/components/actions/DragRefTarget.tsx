@@ -10,6 +10,7 @@ type Props = {
   isDropped: boolean;
   hideMarker: boolean;
   targetBgImg: string;
+  hideLoader: boolean;
 };
 
 const DraggableRefTarget = React.forwardRef<HTMLDivElement, Props>(
@@ -22,6 +23,7 @@ const DraggableRefTarget = React.forwardRef<HTMLDivElement, Props>(
       loaderPos,
       isDropped,
       hideMarker,
+      hideLoader
     },
     ref,
   ) => {
@@ -33,9 +35,8 @@ const DraggableRefTarget = React.forwardRef<HTMLDivElement, Props>(
           animate={{ opacity: isDropped || hideMarker ? 0 : 1 }}
           className={`${targetBgPos} ${targetBgImg} grayscale`}
         />
-
         <motion.div ref={ref} id={id} className={`${className}`}>
-          {!isDropped && (
+          {!isDropped && !hideLoader && (
             <PuffLoader
               color="gold"
               size={30}

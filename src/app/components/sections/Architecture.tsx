@@ -154,6 +154,7 @@ export default function Architecture({ showNextSlide }: any) {
           hideMarker={false}
           targetBgImg="bg-[url('/images/architecture/architecture_drag1.png')] bg-no-repeat"
           targetBgPos="absolute left-[302.5px] top-[185px] h-[100px] w-[50px]"
+          loaderPos=""
           isDropped={isDroppedGlassWindow}
           ref={glassWindowTargetRef}
           className="absolute left-[296px] top-[184px] h-[50px] w-[50px] bg-red-500 bg-opacity-0"
@@ -165,6 +166,7 @@ export default function Architecture({ showNextSlide }: any) {
           hideMarker={false}
           targetBgImg="bg-[url('/images/architecture/architecture_drag2.png')] bg-no-repeat bg-cover"
           targetBgPos="absolute left-[274px] top-[29px] h-[135px] w-[84px]"
+          loaderPos=""
           isDropped={isDroppedGargoyales}
           ref={gargoyalesTargetRef}
           className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
@@ -176,6 +178,7 @@ export default function Architecture({ showNextSlide }: any) {
           hideMarker={false}
           targetBgImg="bg-[url('/images/architecture/architecture_drag4.png')] bg-no-repeat bg-cover "
           targetBgPos="absolute left-[460px] top-[79px] h-[225px] w-[146px]"
+          loaderPos=""
           isDropped={isDroppedGothicVault}
           ref={gothicVaultTargetRef}
           className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
@@ -187,6 +190,7 @@ export default function Architecture({ showNextSlide }: any) {
           hideMarker={false}
           targetBgImg="bg-[url('/images/architecture/architecture_drag5.png')] bg-no-repeat bg-cover "
           targetBgPos="absolute left-[350px] top-[185px] h-[125px] w-[180px]"
+          loaderPos=""
           isDropped={isDroppedFlyingButtresses}
           ref={flyingButtressesTargetRef}
           className="absolute left-[430px] top-[225px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
@@ -198,6 +202,7 @@ export default function Architecture({ showNextSlide }: any) {
           hideMarker={false}
           targetBgImg="bg-[url('/images/architecture/architecture_drag3.png')] bg-no-repeat bg-cover "
           targetBgPos="absolute left-[125px] top-[180px] h-[34px] w-[152px]"
+          loaderPos=""
           isDropped={isDroppedRoof}
           ref={roofTargetRef}
           className="absolute left-[170px] top-[175px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"

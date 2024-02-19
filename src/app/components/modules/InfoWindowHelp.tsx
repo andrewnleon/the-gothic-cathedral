@@ -3,7 +3,13 @@ import { infoWindowHelpText } from "@app/content";
 import { motion } from "framer-motion";
 import InfoWindow from "./InfoWindow";
 
-export default function InfoWindowHelp() {
+interface InfoWindowProps {
+  infoWindowTextSize: string;
+}
+
+export default function InfoWindowHelp({
+  infoWindowTextSize,
+}: InfoWindowProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const toggleInfoWindow = () => {
@@ -15,15 +21,15 @@ export default function InfoWindowHelp() {
       <motion.button
         type="button"
         onClick={toggleInfoWindow}
-        className="absolute right-[0px] top-[80px] h-[auto] w-[100px] p-2 text-end text-[13px] text-lg font-bold text-secondary"
+        className="text-md absolute right-[0px] top-[80px] h-[auto] w-[100px] p-2 text-end font-bold text-secondary"
       >
         Help?
       </motion.button>
       <div
-        className={`absolute left-[580px] top-[120px] z-50 h-[auto] w-[240px] transition-opacity duration-300 ${isHovered ? "z-20 opacity-100" : " z-[0] opacity-0"}`}
+        className={`absolute left-[575px] top-[120px] z-50 h-[auto] w-[240px] transition-opacity duration-300 ${isHovered ? "z-20 opacity-100" : " z-[0] opacity-0"}`}
       >
         <InfoWindow
-          className={`h-[auto] w-[240px] text-nowrap border-[1px]`}
+          className={`${infoWindowTextSize} h-[auto] w-[245px] text-nowrap border-[1px]`}
           text={infoWindowHelpText}
         />
       </div>

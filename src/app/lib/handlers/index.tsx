@@ -3,12 +3,33 @@ import useModifiedDragEnd from "../hooks/useDragHandler";
 export const useHandlers = (dependencies: any) => {
 
   //Gargoyales
-  const handleDragEndLionModified = useModifiedDragEnd({
-    handleDragEnd: dependencies.handleDragEndLion,
-    targetRef: dependencies.lionTargetRef,
-    text: dependencies.glassWindowText,
-    setInfoWindowText: dependencies.setInfoWindowText,
-  });
+  // const handleDragEndLionModified = useModifiedDragEnd({
+  //   handleDragEnd: dependencies.handleDragEndLion,
+  //   targetRef: dependencies.lionTargetRef,
+  //   text: dependencies.lionText,
+  //   setInfoWindowText: dependencies.setInfoWindowText,
+  // });
+  // const handleDragEndDogModified = useModifiedDragEnd({
+  //   handleDragEnd: dependencies.handleDragEndDog,
+  //   targetRef: dependencies.dogTargetRef,
+  //   text: dependencies.dogText,
+  //   setInfoWindowText: dependencies.setInfoWindowText,
+  // });
+  // const handleDragEndWolfModified = useModifiedDragEnd({
+  //   handleDragEnd: dependencies.handleDragEndWolf,
+  //   targetRef: dependencies.wolfTargetRef,
+  //   text: dependencies.wolfText,
+  //   setInfoWindowText: dependencies.setInfoWindowText,
+  // });
+
+
+
+
+
+
+
+
+
 
   //Architecture
   const handleDragEndGlassWindowModified = useModifiedDragEnd({
@@ -47,7 +68,10 @@ export const useHandlers = (dependencies: any) => {
   });
 
   return {
-    handleDragEndLionModified,
+    // handleDragEndLionModified,
+    // handleDragEndDogModified,
+    // handleDragEndWolfModified,
+
     handleDragEndGlassWindowModified,
     handleDragEndGargoyalesModified,
     handleDragEndFlyingButtressesModified,

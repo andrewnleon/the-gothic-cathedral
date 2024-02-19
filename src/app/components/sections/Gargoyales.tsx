@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
 import DraggableLabelItem from "@app/components/actions/DragLabelItem";
@@ -9,137 +9,188 @@ import InfoWindowHelp from "@app/components/modules/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
 import {
-  gargoyaleText,
-  glassWindowText,
-  flyingButtressesText,
-  gothicVaultText,
-  roofText,
+  lionText,
+  dogText,
+  wolfText,
+  eagleText,
+  snakeText,
+  goatText,
+  monkeyText,
 } from "@app/content";
 import SectionSlide from "../SectionSlide";
+import useModifiedDragEnd from "@app/lib/hooks/useDragHandler";
 
 export default function Architecture({ showNextSlide }: any) {
   const lionTargetRef = useRef<HTMLDivElement>(null);
-  const gargoyalesTargetRef = useRef<HTMLDivElement>(null);
-  const gothicVaultTargetRef = useRef<HTMLDivElement>(null);
-  const flyingButtressesTargetRef = useRef<HTMLDivElement>(null);
-  const roofTargetRef = useRef<HTMLDivElement>(null);
-  const [infoWindowText, setInfoWindowText] = useState<string>("");
+  const dogTargetRef = useRef<HTMLDivElement>(null);
+  const wolfTargetRef = useRef<HTMLDivElement>(null);
+  const eagleTargetRef = useRef<HTMLDivElement>(null);
+  const snakeTargetRef = useRef<HTMLDivElement>(null);
+  const goatTargetRef = useRef<HTMLDivElement>(null);
+  const MonkeyTargetRef = useRef<HTMLDivElement>(null);
+  const [infoWindowText, setInfoWindowText] = useState<string>(lionText);
 
   //1. Drag enabled target Items
   const {
     isDropped: isDroppedLion,
-    x: xLion,
-    y: yLion,
+    x,
+    y,
     handleDragEnd: handleDragEndLion,
   } = useDrag(
     lionTargetRef,
-    50, // elementWidth
-    50, // elementHeight
-    -10, // initialX
-    15, // initialY
+    50,
+    50,
+    -10,
+    12,
   );
   const {
-    isDropped: isDroppedGargoyales,
-    x: xGargoyales,
-    y: yGargoyales,
-    handleDragEnd: handleDragEndGargoyales,
+    isDropped: isDroppedDog,
+    x: xDog,
+    y: yDog,
+    handleDragEnd: handleDragEndDog,
   } = useDrag(
-    gargoyalesTargetRef,
-    50, // elementWidth
-    50, // elementHeight
-    90, // initialX
-    -20, // initialY
+    dogTargetRef,
+    20,
+    20,
+    0,
+    0,
   );
   const {
-    isDropped: isDroppedFlyingButtresses,
-    x: xFlyingButtresses,
-    y: yFlyingButtresses,
-    handleDragEnd: handleDragEndFlyingButtresses,
+    isDropped: isDroppedWolf,
+    x: xWolf,
+    y: yWolf,
+    handleDragEnd: handleDragEndWolf,
   } = useDrag(
-    flyingButtressesTargetRef,
-    50, // elementWidth
-    50, // elementHeight
-    -10, // initialX
-    15, // initialY
+    wolfTargetRef,
+    20,
+    20,
+    0,
+    0,
   );
+
   const {
-    isDropped: isDroppedGothicVault,
-    x: xGothicVault,
-    y: yGothicVault,
-    handleDragEnd: handleDragEndGothicVault,
+    isDropped: isDroppedEagle,
+    x: xEagle,
+    y: yEagle,
+    handleDragEnd: handleDragEndEagle,
   } = useDrag(
-    gothicVaultTargetRef,
-    50, // elementWidth
-    50, // elementHeight
-    20, // initialX
-    15, // initialY
+    eagleTargetRef,
+    20,
+    20,
+    0,
+    0,
   );
-  const {
-    isDropped: isDroppedRoof,
-    x: xRoof,
-    y: yRoof,
-    handleDragEnd: handleDragEndRoof,
-  } = useDrag(
-    roofTargetRef,
-    50, // elementWidth
-    50, // elementHeight
-    20, // initialX
-    25, // initialY
-  );
+
+  // const {
+  //   isDropped: isDroppedGothicVault,
+  //   x: xGothicVault,
+  //   y: yGothicVault,
+  //   handleDragEnd: handleDragEndGothicVault,
+  // } = useDrag(
+  //   gothicVaultTargetRef,
+  //   50, // elementWidth
+  //   50, // elementHeight
+  //   20, // initialX
+  //   15, // initialY
+  // );
+  // const {
+  //   isDropped: isDroppedRoof,
+  //   x: xRoof,
+  //   y: yRoof,
+  //   handleDragEnd: handleDragEndRoof,
+  // } = useDrag(
+  //   roofTargetRef,
+  //   50, // elementWidth
+  //   50, // elementHeight
+  //   20, // initialX
+  //   25, // initialY
+  // );
 
   //2. Define Handlers
   const dependencies = {
     handleDragEndLion,
     lionTargetRef,
-    glassWindowText,
-    handleDragEndGargoyales,
-    gargoyalesTargetRef,
-    gargoyaleText,
-    handleDragEndFlyingButtresses,
-    flyingButtressesTargetRef,
-    flyingButtressesText,
-    handleDragEndGothicVault,
-    gothicVaultTargetRef,
-    gothicVaultText,
-    handleDragEndRoof,
-    roofTargetRef,
-    roofText,
+    lionText,
+    handleDragEndDog,
+    dogTargetRef,
+    dogText,
+    handleDragEndWolf,
+    wolfTargetRef,
+    wolfText,
+    handleDragEndEagle,
+    eagleTargetRef,
+    eagleText,
     setInfoWindowText,
   };
-
-  const {
-    handleDragEndLionModified,
-    handleDragEndGargoyalesModified,
-    handleDragEndFlyingButtressesModified,
-    handleDragEndGothicVaultModified,
-    handleDragEndRoofModified,
-  } = useHandlers(dependencies);
 
   // Count Completions
   // If an action is completed to its respective target then do count
   const [isContinue, setIsContinue] = useState(false);
-  // drop state initializers
-  const isDroppedStates = [
-    isDroppedLion,
-    isDroppedGargoyales,
-    isDroppedFlyingButtresses,
-    isDroppedGothicVault,
-    isDroppedRoof,
-  ];
 
   // Use completion hook
+  const isDroppedStates = [isDroppedLion, isDroppedDog, isDroppedWolf];
   const completedCount = useCompletionCount(
     isDroppedStates,
     showNextSlide,
     isContinue,
   );
+  
   // Do constraint count logic
   const hasCompletedCount = completedCount === isDroppedStates.length;
+
+
+  const handleDragEndLionModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndLion,
+    targetRef: dependencies.lionTargetRef,
+    text: dependencies.lionText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+  const handleDragEndDogModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndDog,
+    targetRef: dependencies.dogTargetRef,
+    text: dependencies.dogText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+  const handleDragEndWolfModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndWolf,
+    targetRef: dependencies.wolfTargetRef,
+    text: dependencies.wolfText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+
+  
+  const handleDragEnd = (event: any) => {
+    // Assuming event contains the drop coordinates
+    const dropX = event.clientX;
+    const dropY = event.clientY;
+  
+    // Get the bounding rectangles of the target elements
+    const targets = [lionTargetRef, dogTargetRef, wolfTargetRef, eagleTargetRef]; // Add other targets as needed
+    const texts = [lionText, dogText, wolfText, eagleText]; // Corresponding texts for each target
+  
+    for (let i = 0; i < targets.length; i++) {
+      const target = targets[i].current;
+      if (target) {
+        const rect = target.getBoundingClientRect();
+        if (
+          dropX >= rect.left &&
+          dropX <= rect.right &&
+          dropY >= rect.top &&
+          dropY <= rect.bottom
+        ) {
+          // If the drop coordinates are within a target's bounds, update state as needed
+          setInfoWindowText(texts[i]);
+          // Handle any other necessary state updates here, such as marking the target as completed
+          break; // Stop checking once a target is found
+        }
+      }
+    }
+  };
 
   return (
     <SectionSlide bgImage="/images/gargoyales/gargoyales.png">
       {/* Help */}
-      <InfoWindowHelp />
+      <InfoWindowHelp infoWindowTextSize="text-[11px]" />
 
       {/* Infowindow for dropped item */}
       <InfoWindow
@@ -165,9 +216,10 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
+          hideLoader
           isDropped={isDroppedLion}
           ref={lionTargetRef}
-          className="absolute left-[100px] top-[5px] h-[20px] w-[20px] bg-red-500 bg-opacity-100"
+          className="absolute left-[96.2px] top-[-5px] h-[20px] w-[20px] bg-red-500 bg-opacity-0"
         />
 
         <DragRefTarget
@@ -177,9 +229,10 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          isDropped={isDroppedLion}
-          ref={lionTargetRef}
-          className="absolute left-[185px] top-[5px] h-[20px] w-[20px] bg-yellow-500 bg-opacity-50"
+          hideLoader={false}
+          isDropped={isDroppedDog}
+          ref={dogTargetRef}
+          className="absolute left-[193px] top-[-5px] h-[20px] w-[20px] bg-yellow-500 bg-opacity-0"
         />
 
         <DragRefTarget
@@ -189,9 +242,10 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          isDropped={isDroppedLion}
-          ref={lionTargetRef}
-          className="absolute left-[275px] top-[5px] h-[20px] w-[20px] bg-orange-500 bg-opacity-50"
+          hideLoader={false}
+          isDropped={isDroppedWolf}
+          ref={wolfTargetRef}
+          className="absolute left-[291px] top-[-5px] h-[20px] w-[20px] bg-orange-500 bg-opacity-0"
         />
 
         <DragRefTarget
@@ -201,9 +255,10 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          isDropped={isDroppedLion}
-          ref={lionTargetRef}
-          className="absolute left-[390px] top-[5px] h-[20px] w-[20px] bg-green-500 bg-opacity-50"
+          hideLoader={false}
+          isDropped={isDroppedEagle}
+          ref={eagleTargetRef}
+          className="absolute left-[394px] top-[-5px] h-[20px] w-[20px] bg-green-500 bg-opacity-0"
         />
 
         <DragRefTarget
@@ -213,9 +268,10 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          isDropped={isDroppedLion}
+          hideLoader={false}
+          isDropped={false}
           ref={lionTargetRef}
-          className="absolute left-[500px] top-[5px] h-[20px] w-[20px] bg-blue-500 bg-opacity-50"
+          className="absolute left-[503px] top-[-5px] h-[20px] w-[20px] bg-blue-500 bg-opacity-0"
         />
 
         <DragRefTarget
@@ -225,10 +281,12 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          isDropped={isDroppedLion}
+          hideLoader={false}
+          isDropped={false}
           ref={lionTargetRef}
-          className="absolute left-[625px] top-[5px] h-[20px] w-[20px] bg-purple-500 bg-opacity-50"
+          className="absolute left-[611px] top-[-5px] h-[20px] w-[20px] bg-purple-500 bg-opacity-0"
         />
+
         <DragRefTarget
           key="scrollGoat"
           id="scrollGoat"
@@ -236,9 +294,10 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          isDropped={isDroppedLion}
+          hideLoader={false}
+          isDropped={false}
           ref={lionTargetRef}
-          className="absolute left-[728px] top-[5px] h-[20px] w-[20px] bg-cyan-500 bg-opacity-50"
+          className="absolute left-[724px] top-[-5px] h-[20px] w-[20px] bg-cyan-500 bg-opacity-0"
         />
       </div>
 
@@ -246,17 +305,17 @@ export default function Architecture({ showNextSlide }: any) {
       <div className="absolute right-[12px] top-[130px] h-[350px] w-[171px] bg-white bg-opacity-0">
         {/* Scroller */}
         <DraggableLabelItem
-          key="lion"
-          id="lion"
+          key="scroller"
+          id="scrollerItem"
           label=""
           hideDragItem={false}
-          labelClassName="relative left-[5px] top-[5px] z-20 h-[10px] w-[80px] text-center text-[9px] text-white"
-          itemClassName="absolute left-[-526px] top-[-23px] h-[76px] w-[49px] bg-red-500 bg-opacity-0 bg-no-repeat"
+          labelClassName=""
+          itemClassName="absolute left-[-529.5px] top-[-30px] h-[76px] w-[49px] bg-red-500 bg-opacity-0 bg-no-repeat"
           dragItemImage="bg-[url('/images/gargoyales/scroller.png')]"
-          handleDragEnd={handleDragEndLionModified}
-          isDropped={isDroppedLion}
-          x={xLion}
-          y={yLion}
+          handleDragEnd={handleDragEnd}
+          isDropped={isDroppedDog}
+          x={x}
+          y={y}
         />
       </div>
 

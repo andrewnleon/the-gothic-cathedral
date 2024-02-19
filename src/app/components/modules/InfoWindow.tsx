@@ -23,7 +23,7 @@ export default function InfoWindow({ className, text }: infoWindowProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p dangerouslySetInnerHTML={{ __html: text }} />
+          <p className="" dangerouslySetInnerHTML={{ __html: text }} />
         </motion.div>
       </AnimatePresence>
     </motion.div>
