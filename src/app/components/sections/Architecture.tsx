@@ -229,8 +229,9 @@ export default function Architecture({ showNextSlide }: any) {
           x={xGlassWindow}
           y={yGlassWindow}
           itemClassName="absolute left-[30px] top-[0px] h-[76px] w-[49px] bg-red-500 bg-opacity-0 bg-cover"
+          dragElastic={0}
+          isHorizontalDrag={false}
         />
-
         {/* Gargoyales */}
         <DraggableLabelItem
           key="gargoyales"
@@ -244,6 +245,8 @@ export default function Architecture({ showNextSlide }: any) {
           x={xGargoyales}
           y={yGargoyales}
           itemClassName="absolute left-[20px] top-[35px] h-[77px] w-[42px] bg-yellow-500 bg-opacity-0 bg-cover"
+          dragElastic={0}
+          isHorizontalDrag={false}
         />
         {/* Flying Buttresses */}
         <DraggableLabelItem
@@ -258,6 +261,8 @@ export default function Architecture({ showNextSlide }: any) {
           x={xFlyingButtresses}
           y={yFlyingButtresses}
           itemClassName="absolute left-[17px] top-[100px] h-[70px] w-[70px] bg-blue-500 bg-opacity-0 bg-cover"
+          dragElastic={0}
+          isHorizontalDrag={false}
         />
         {/* Gothic Vault */}
         <DraggableLabelItem
@@ -272,6 +277,8 @@ export default function Architecture({ showNextSlide }: any) {
           x={xGothicVault}
           y={yGothicVault}
           itemClassName="absolute left-[70px] top-[105px] h-[105px] w-[75px] bg-green-500 bg-opacity-0 bg-cover"
+          dragElastic={0}
+          isHorizontalDrag={false}
         />
         {/* Roof */}
         <DraggableLabelItem
@@ -286,6 +293,8 @@ export default function Architecture({ showNextSlide }: any) {
           x={xRoof}
           y={yRoof}
           itemClassName="absolute left-[-10px] top-[225px] h-[35px] w-[152px] bg-orange-500 bg-opacity-0 bg-cover"
+          dragElastic={0}
+          isHorizontalDrag={false}
         />
       </div>
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
 import DraggableLabelItem from "@app/components/actions/DragLabelItem";
@@ -7,7 +7,6 @@ import ContinueBtn from "@app/components/modules/ContinueBtn";
 import InfoWindow from "@app/components/modules/InfoWindow";
 import InfoWindowHelp from "@app/components/modules/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
-import { useHandlers } from "@app/lib/handlers";
 import {
   lionText,
   dogText,
@@ -18,16 +17,20 @@ import {
   monkeyText,
 } from "@app/content";
 import SectionSlide from "../SectionSlide";
-import useModifiedDragEnd from "@app/lib/hooks/useDragHandler";
 
 export default function Architecture({ showNextSlide }: any) {
-  const lionTargetRef = useRef<HTMLDivElement>(null);
-  const dogTargetRef = useRef<HTMLDivElement>(null);
-  const wolfTargetRef = useRef<HTMLDivElement>(null);
-  const eagleTargetRef = useRef<HTMLDivElement>(null);
-  const snakeTargetRef = useRef<HTMLDivElement>(null);
-  const goatTargetRef = useRef<HTMLDivElement>(null);
-  const monkeyTargetRef = useRef<HTMLDivElement>(null);
+
+  const targetsRef = {
+    lion: useRef<HTMLDivElement>(null),
+    dog: useRef<HTMLDivElement>(null),
+    wolf: useRef<HTMLDivElement>(null),
+    eagle: useRef<HTMLDivElement>(null),
+    snake: useRef<HTMLDivElement>(null),
+    goat: useRef<HTMLDivElement>(null),
+    monkey: useRef<HTMLDivElement>(null),
+    containerRef: useRef<HTMLDivElement>(null),
+  };
+
   const [infoWindowText, setInfoWindowText] = useState<string>(lionText);
 
   //1. Drag enabled target Items
@@ -35,9 +38,8 @@ export default function Architecture({ showNextSlide }: any) {
     isDropped: isDroppedLion,
     x,
     y,
-    handleDragEnd: handleDragEndLion,
   } = useDrag(
-    lionTargetRef,
+    targetsRef.lion,
     20,
     20,
     -10,
@@ -47,11 +49,10 @@ export default function Architecture({ showNextSlide }: any) {
     isDropped: isDroppedDog,
     x: xDog,
     y: yDog,
-    handleDragEnd: handleDragEndDog,
   } = useDrag(
-    dogTargetRef,
-    20,
-    20,
+    targetsRef.dog,
+    30,
+    30,
     0,
     0,
   );
@@ -59,37 +60,32 @@ export default function Architecture({ showNextSlide }: any) {
     isDropped: isDroppedWolf,
     x: xWolf,
     y: yWolf,
-    handleDragEnd: handleDragEndWolf,
   } = useDrag(
-    wolfTargetRef,
-    20,
-    20,
+    targetsRef.wolf,
+    30,
+    30,
     0,
     0,
   );
-
   const {
     isDropped: isDroppedEagle,
     x: xEagle,
     y: yEagle,
-    handleDragEnd: handleDragEndEagle,
   } = useDrag(
-    eagleTargetRef,
-    20,
-    20,
+    targetsRef.eagle,
+    30,
+    30,
     0,
     0,
   );
-
   const {
     isDropped: isDroppedSnake,
     x: xSnake,
     y: ySnake,
-    handleDragEnd: handleDragEndSnake,
   } = useDrag(
-    snakeTargetRef,
-    20,
-    20,
+    targetsRef.snake,
+    30,
+    30,
     0,
     0,
   );
@@ -97,24 +93,21 @@ export default function Architecture({ showNextSlide }: any) {
     isDropped: isDroppedGoat,
     x: xGoat,
     y: yGoat,
-    handleDragEnd: handleDragEndGoat,
   } = useDrag(
-    goatTargetRef,
-    20,
-    20,
+    targetsRef.goat,
+    30,
+    30,
     0,
     0,
   );
-
   const {
     isDropped: isDroppedMonkey,
     x: xMonkey,
     y: yMonkey,
-    handleDragEnd: handleDragEndMonkey,
   } = useDrag(
-    goatTargetRef,
-    20,
-    20,
+    targetsRef.monkey,
+    30,
+    30,
     0,
     0,
   );
@@ -122,53 +115,61 @@ export default function Architecture({ showNextSlide }: any) {
   // Count Completions
   // If an action is completed to its respective target then do count
   const [isContinue, setIsContinue] = useState(false);
-
-  // Use completion hook
-  const isDroppedStates = [isDroppedLion, isDroppedDog, isDroppedWolf];
-  const completedCount = useCompletionCount(
-    isDroppedStates,
-    showNextSlide,
-    isContinue,
-  );
-  
-  // Do constraint count logic
+  const isDroppedStates = [isDroppedLion, isDroppedDog, isDroppedWolf, isDroppedEagle, isDroppedSnake, isDroppedGoat, isDroppedMonkey];
+  const completedCount = useCompletionCount( isDroppedStates, showNextSlide, isContinue, );
   const hasCompletedCount = completedCount === isDroppedStates.length;
 
+  const [loadersVisibility, setLoadersVisibility] = useState({
+    dog: true,
+    wolf: false,
+    eagle: false,
+    snake: false,
+    goat: false,
+    monkey: false,
+  });
+  
   const handleDragEndScroll = (event: any) => {
     const dropX = event.clientX;
     const dropY = event.clientY;
+    const targets = [
+      { ref: targetsRef.lion, name: 'lion', text: lionText },
+      { ref: targetsRef.dog, name: 'dog', text: dogText },
+      { ref: targetsRef.wolf, name: 'wolf', text: wolfText },
+      { ref: targetsRef.eagle, name: 'eagle', text: eagleText },
+      { ref: targetsRef.snake, name: 'snake', text: snakeText },
+      { ref: targetsRef.goat, name: 'goat', text: goatText },
+      { ref: targetsRef.monkey, name: 'monkey', text: monkeyText },
+    ];
   
-    const targets = [lionTargetRef, dogTargetRef, wolfTargetRef, eagleTargetRef, snakeTargetRef, goatTargetRef, monkeyTargetRef];
-    const texts = [lionText, dogText, wolfText, eagleText, snakeText, goatText, monkeyText];
-  
-    for (let i = 0; i < targets.length; i++) {
-      const target = targets[i].current;
-      if (target) {
-        const rect = target.getBoundingClientRect();
-        if (
-          dropX >= rect.left &&
-          dropX <= rect.right &&
-          dropY >= rect.top &&
-          dropY <= rect.bottom
-        ) {
-          // If the drop coordinates are within a target's bounds, update state as needed
-          setInfoWindowText(texts[i]);
-          // Handle any other necessary state updates here, such as marking the target as completed
-          break; // Stop checking once a target is found
-        }
+    targets.forEach(({ ref, name, text }) => {
+      const rect = ref.current?.getBoundingClientRect();
+      if (rect && dropX >= rect.left && dropX <= rect.right && dropY >= rect.top && dropY <= rect.bottom) {
+        setLoadersVisibility(prevState => {
+          let newState = { ...prevState, [name]: false }; 
+          if (name === 'dog') {
+            newState = { ...newState, wolf: true };
+          }
+          if (name === 'wolf') {
+            newState = { ...newState, eagle: true };
+          }
+          if (name === 'eagle') {
+            newState = { ...newState, snake: true };
+          }
+          if (name === 'snake') {
+            newState = { ...newState, goat: true };
+          }
+          if (name === 'goat') {
+            newState = { ...newState, monkey: true };
+          }
+          return newState;
+        });
+        setInfoWindowText(text);
       }
-    }
+    });
   };
 
-  const handleTargetDrop = (targetId: React.RefObject<HTMLDivElement>) => {
-    if(isDroppedDog) {
-      return false;
-    }
-    return true;
-  }
-
   return (
-    <SectionSlide bgImage="/images/gargoyales/gargoyales.png">
+    <SectionSlide bgImage="/images/gargoyales/gargoyales.png" ref={targetsRef.containerRef}>
       {/* Help */}
       <InfoWindowHelp infoWindowTextSize="text-[11px]" />
 
@@ -198,7 +199,7 @@ export default function Architecture({ showNextSlide }: any) {
           hideMarker={false}
           hideLoader
           isDropped={isDroppedLion}
-          ref={lionTargetRef}
+          ref={targetsRef.lion}
           className="absolute left-[96.2px] top-[-5px] h-[20px] w-[20px] bg-red-500 bg-opacity-0"
         />
 
@@ -209,9 +210,9 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          hideLoader={handleTargetDrop(dogTargetRef)}
+          hideLoader={!loadersVisibility.dog} // Use the state to control loader visibility directly
           isDropped={isDroppedDog}
-          ref={dogTargetRef}
+          ref={targetsRef.dog}
           className="absolute left-[193px] top-[-5px] h-[20px] w-[20px] bg-yellow-500 bg-opacity-0"
         />
 
@@ -222,9 +223,9 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          hideLoader={handleTargetDrop(wolfTargetRef)}
+          hideLoader={!loadersVisibility.wolf}
           isDropped={isDroppedWolf}
-          ref={wolfTargetRef}
+          ref={targetsRef.wolf}
           className="absolute left-[291px] top-[-5px] h-[20px] w-[20px] bg-orange-500 bg-opacity-0"
         />
 
@@ -235,9 +236,9 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          hideLoader={handleTargetDrop(eagleTargetRef)}
+          hideLoader={!loadersVisibility.eagle}
           isDropped={isDroppedEagle}
-          ref={eagleTargetRef}
+          ref={targetsRef.eagle}
           className="absolute left-[394px] top-[-5px] h-[20px] w-[20px] bg-green-500 bg-opacity-0"
         />
 
@@ -248,9 +249,9 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          hideLoader={handleTargetDrop(snakeTargetRef)}
+          hideLoader={!loadersVisibility.snake}
           isDropped={isDroppedSnake}
-          ref={snakeTargetRef}
+          ref={targetsRef.snake}
           className="absolute left-[503px] top-[-5px] h-[20px] w-[20px] bg-blue-500 bg-opacity-0"
         />
 
@@ -261,9 +262,9 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          hideLoader={handleTargetDrop(goatTargetRef)}
+          hideLoader={!loadersVisibility.goat}
           isDropped={isDroppedGoat}
-          ref={goatTargetRef}
+          ref={targetsRef.goat}
           className="absolute left-[611px] top-[-5px] h-[20px] w-[20px] bg-purple-500 bg-opacity-0"
         />
 
@@ -274,9 +275,9 @@ export default function Architecture({ showNextSlide }: any) {
           targetBgPos=""
           loaderPos="ms-[-5px] mt-[-5px]"
           hideMarker={false}
-          hideLoader={handleTargetDrop(monkeyTargetRef)}
+          hideLoader={!loadersVisibility.monkey}
           isDropped={isDroppedMonkey}
-          ref={monkeyTargetRef}
+          ref={targetsRef.monkey}
           className="absolute left-[724px] top-[-5px] h-[20px] w-[20px] bg-cyan-500 bg-opacity-0"
         />
       </div>
@@ -296,6 +297,8 @@ export default function Architecture({ showNextSlide }: any) {
           isDropped={isDroppedDog}
           x={x}
           y={y}
+          dragElastic={0}
+          isHorizontalDrag={true}
         />
       </div>
 

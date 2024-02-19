@@ -1,11 +1,5 @@
 import { useState, useCallback, useEffect, RefObject } from "react";
-import {
-  useMotionValue,
-  useAnimation,
-  PanInfo,
-  MotionValue,
-  AnimationControls,
-} from "framer-motion";
+import { useMotionValue, useAnimation, PanInfo, MotionValue, AnimationControls, } from "framer-motion";
 
 type UseDragReturnType = {
   isDropped: boolean;
@@ -61,7 +55,7 @@ const useDrag = (
           await yControls.start({
             y: targetRect.top - (offsetParentRect?.top ?? 0),
           });
-          if (onDropCompleted) onDropCompleted(); // Call the callback after updating isDropped
+          if (onDropCompleted) onDropCompleted();
         } else {
           setIsDropped(false);
           x.set(initialX);

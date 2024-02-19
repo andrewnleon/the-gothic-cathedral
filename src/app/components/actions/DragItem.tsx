@@ -10,7 +10,10 @@ type Props = {
   handleDragEnd: any;
   dragItemImage: string;
   className: string;
+  dragElastic: number;
+  isHorizontalDrag: boolean
 };
+
 
 export default function DraggableItem({
   id,
@@ -21,20 +24,19 @@ export default function DraggableItem({
   dragItemImage,
   hideDragItem,
   className,
+  dragElastic,
+  isHorizontalDrag
 }: Props) {
   return (
     <motion.div
       id={id}
-      drag={!isDropped}
+      drag={!isDropped || !isHorizontalDrag ? "x" : !isHorizontalDrag ?? false} // Allow dragging only left and right when not dropped
       style={{ x, y }}
       animate={{ opacity: isDropped || hideDragItem ? 0 : 1 }}
-      transition={{
-        type: "tween",
-        ease: "easeOut",
-        duration: 0.5,
-      }}
       dragMomentum={false}
-      dragElastic={0}
+      
+      dragElastic={dragElastic}
+
       onDragEnd={handleDragEnd}
       className={`${isDropped ? "pointer-events-none" : "pointer-events-auto"} ${dragItemImage} ${className} z-10`}
     >

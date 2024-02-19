@@ -13,7 +13,11 @@ type DraggableLabelItemProps = {
   dragItemImage: string;
   labelClassName: string;
   itemClassName: string;
+  dragElastic: number;
+  isHorizontalDrag: boolean;
 };
+
+
 
 const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
   id,
@@ -26,6 +30,8 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
   dragItemImage,
   labelClassName,
   itemClassName,
+  dragElastic,
+  isHorizontalDrag
 }) => (
   <>
     <div id={`${id}-label`} className={labelClassName}>
@@ -42,6 +48,8 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
       y={y}
       dragItemImage={dragItemImage}
       className={itemClassName}
+      dragElastic={dragElastic}
+      isHorizontalDrag={isHorizontalDrag}
     />
   </>
 );
