@@ -7,7 +7,6 @@ import FlyingButtresses from "./components/sections/FlyingButtresses";
 import Gargoyales from "./components/sections/Gargoyales";
 import GothicVault from "./components/sections/GothicVault";
 import Intro from "./components/sections/Intro";
-import Roof from "./components/sections/Roof";
 import Section from "./components/Section";
 import StainedGlassWindow from "./components/sections/StainedGlassWindow";
 import ThankYou from "./components/sections/ThankYou";
@@ -19,7 +18,6 @@ export default function Home() {
   const [showGargoyales, setShowGargoyales] = useState(false);
   const [showFlyingButtresses, setShowFlyingButtresses] = useState(false);
   const [showGothicVault, setShowGothicVault] = useState(false);
-  const [showRoof, setShowRoof] = useState(false);
   const [showStainedGlassWindow, setShowStainedGlassWindow] = useState(false);
   const [showOutro, setShowOutro] = useState(false);
 
@@ -31,7 +29,6 @@ export default function Home() {
       setShowStainedGlassWindow,
       setShowFlyingButtresses,
       setShowGothicVault,
-      setShowRoof,
       setShowOutro,
     ],
     [],
@@ -86,7 +83,6 @@ export default function Home() {
       content: <GothicVault />,
       showButton: true,
     },
-    { label: "Roof", isVisible: showRoof, content: <Roof />, showButton: true },
     {
       label: "Stained Glass Window",
       isVisible: showStainedGlassWindow,
