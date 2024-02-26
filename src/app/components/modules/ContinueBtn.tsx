@@ -3,10 +3,9 @@ import React from "react";
 type Props = {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   className: string;
-  isPending: boolean;
 };
 
-function ContinueBtn({ onClick, className, isPending }: Props) {
+function ContinueBtn({ onClick, className }: Props) {
   return (
     <button
       type="button"

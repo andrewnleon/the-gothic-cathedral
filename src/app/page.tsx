@@ -48,6 +48,7 @@ export default function Home() {
   }, [currentSectionIndex, sectionSetters]);
 
   const goToNextSection = () => {
+    console.log("Advancing to next section from", currentSectionIndex); // Debugging line
     if (currentSectionIndex < sectionSetters.length - 1) {
       sectionSetters[currentSectionIndex](false);
       setCurrentSectionIndex(currentSectionIndex + 1);
@@ -58,7 +59,7 @@ export default function Home() {
     {
       label: "Enter",
       isVisible: showIntro,
-      content: <Gargoyales />,
+      content: <Intro />,
       showButton: true,
     },
     {
@@ -70,7 +71,7 @@ export default function Home() {
     {
       label: "Gargoyales",
       isVisible: showGargoyales,
-      content: <Gargoyales />,
+      content: <Gargoyales  showNextSlide={goToNextSection} />,
       showButton: false,
     },
     {

@@ -1,20 +1,13 @@
-import Image from "next/image";
 import React, { useRef, useState } from "react";
 import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
-import DraggableLabelItem from "@app/components/actions/DragLabelItem";
+import DragContainerItem from "@app/components/actions/DragContainerItem";
 import ContinueBtn from "@app/components/modules/ContinueBtn";
 import InfoWindow from "@app/components/modules/InfoWindow";
 import InfoWindowHelp from "@app/components/modules/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
-import {
-  gargoyaleText,
-  glassWindowText,
-  flyingButtressesText,
-  gothicVaultText,
-  roofText,
-} from "@app/content";
+import { gargoyaleText, glassWindowText, flyingButtressesText, gothicVaultText, } from "@app/content";
 import SectionSlide from "../SectionSlide";
 
 export default function Architecture({ showNextSlide }: any) {
@@ -22,7 +15,6 @@ export default function Architecture({ showNextSlide }: any) {
   const gargoyalesTargetRef = useRef<HTMLDivElement>(null);
   const gothicVaultTargetRef = useRef<HTMLDivElement>(null);
   const flyingButtressesTargetRef = useRef<HTMLDivElement>(null);
-  const roofTargetRef = useRef<HTMLDivElement>(null);
   const [infoWindowText, setInfoWindowText] = useState<string>("");
 
   //1. Drag enabled target Items
@@ -74,18 +66,6 @@ export default function Architecture({ showNextSlide }: any) {
     20, // initialX
     15, // initialY
   );
-  const {
-    isDropped: isDroppedRoof,
-    x: xRoof,
-    y: yRoof,
-    handleDragEnd: handleDragEndRoof,
-  } = useDrag(
-    roofTargetRef,
-    50, // elementWidth
-    50, // elementHeight
-    20, // initialX
-    25, // initialY
-  );
 
   //2. Define Handlers
   const dependencies = {
@@ -101,9 +81,6 @@ export default function Architecture({ showNextSlide }: any) {
     handleDragEndGothicVault,
     gothicVaultTargetRef,
     gothicVaultText,
-    handleDragEndRoof,
-    roofTargetRef,
-    roofText,
     setInfoWindowText,
   };
 
@@ -112,37 +89,30 @@ export default function Architecture({ showNextSlide }: any) {
     handleDragEndGargoyalesModified,
     handleDragEndFlyingButtressesModified,
     handleDragEndGothicVaultModified,
-    handleDragEndRoofModified,
   } = useHandlers(dependencies);
 
   // Count Completions
-  // If an action is completed to its respective target then do count
   const [isContinue, setIsContinue] = useState(false);
-  // drop state initializers
   const isDroppedStates = [
     isDroppedGlassWindow,
     isDroppedGargoyales,
     isDroppedFlyingButtresses,
     isDroppedGothicVault,
-    isDroppedRoof,
   ];
-
-  // Use completion hook
   const completedCount = useCompletionCount(
     isDroppedStates,
     showNextSlide,
     isContinue,
   );
-  // Do constraint count logic
   const hasCompletedCount = completedCount === isDroppedStates.length;
 
   return (
-    <SectionSlide bgImage="/images/architecture/architecture.png">
+    <SectionSlide bgImage="/images/architecture/architecture.png" refContainer={undefined}>
       {/* Help */}
       <InfoWindowHelp infoWindowTextSize="" />
       {/* Infowindow for dropped item */}
       <InfoWindow
-        className="absolute left-[15px] top-[130px] z-20 w-[240px] shadow-lg"
+        className="absolute left-[15px] top-[130px] z-20 w-[240px] shadow-lg border-secondary bg-primary bg-opacity-95 border-opacity-50"
         text={infoWindowText}
       />
 
@@ -200,24 +170,12 @@ export default function Architecture({ showNextSlide }: any) {
           className="absolute left-[430px] top-[225px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
         />
 
-        <DragRefTarget
-          key="roofTarget"
-          id="roofTarget"
-          hideMarker={false}
-          targetBgImg="bg-[url('/images/architecture/architecture_drag3.png')] bg-no-repeat bg-cover "
-          targetBgPos="absolute left-[125px] top-[180px] h-[34px] w-[152px]"
-          loaderPos=""
-          isDropped={isDroppedRoof}
-          hideLoader={false}
-          ref={roofTargetRef}
-          className="absolute left-[170px] top-[175px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
-        />
       </div>
 
       {/* Drags */}
       <div className="absolute right-[12px] top-[130px] h-[350px] w-[171px] bg-white bg-opacity-0">
         {/* Glass Window */}
-        <DraggableLabelItem
+        <DragContainerItem
           key="glassWindow"
           id="glassWindow"
           label="Glass Window"
@@ -233,7 +191,7 @@ export default function Architecture({ showNextSlide }: any) {
           isHorizontalDrag={false}
         />
         {/* Gargoyales */}
-        <DraggableLabelItem
+        <DragContainerItem
           key="gargoyales"
           id="gargoyales"
           hideDragItem={false}
@@ -249,7 +207,7 @@ export default function Architecture({ showNextSlide }: any) {
           isHorizontalDrag={false}
         />
         {/* Flying Buttresses */}
-        <DraggableLabelItem
+        <DragContainerItem
           key="flyingbuttresses"
           id="flyingbuttresses"
           hideDragItem={false}
@@ -265,7 +223,7 @@ export default function Architecture({ showNextSlide }: any) {
           isHorizontalDrag={false}
         />
         {/* Gothic Vault */}
-        <DraggableLabelItem
+        <DragContainerItem
           key="gothicVault"
           id="gothicVault"
           hideDragItem={false}
@@ -280,22 +238,6 @@ export default function Architecture({ showNextSlide }: any) {
           dragElastic={0}
           isHorizontalDrag={false}
         />
-        {/* Roof */}
-        <DraggableLabelItem
-          key="Roof"
-          id="Roof"
-          hideDragItem={false}
-          label="Roof"
-          labelClassName="relative left-[-15px] top-[160px] z-10 h-[57px] w-[77px] text-center text-[10px] text-white"
-          dragItemImage="bg-[url('/images/architecture/architecture_drag3.png')]"
-          handleDragEnd={handleDragEndRoofModified}
-          isDropped={isDroppedRoof}
-          x={xRoof}
-          y={yRoof}
-          itemClassName="absolute left-[-10px] top-[225px] h-[35px] w-[152px] bg-orange-500 bg-opacity-0 bg-cover"
-          dragElastic={0}
-          isHorizontalDrag={false}
-        />
       </div>
 
       {/* Continue  */}
@@ -303,7 +245,6 @@ export default function Architecture({ showNextSlide }: any) {
         <ContinueBtn
           className=""
           onClick={() => setIsContinue(true)}
-          isPending={hasCompletedCount}
         />
       )}
     </SectionSlide>

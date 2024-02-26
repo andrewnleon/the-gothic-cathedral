@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import DragItem from '@app/components/actions/DragItem';
 import { MotionValue, PanInfo } from 'framer-motion';
 
-type DraggableLabelItemProps = {
+type DragContainerItemProps = {
   id: string;
   label: string;
   handleDragEnd: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void;
@@ -15,11 +15,10 @@ type DraggableLabelItemProps = {
   itemClassName: string;
   dragElastic: number;
   isHorizontalDrag: boolean;
+  refContainer?: React.RefObject<HTMLDivElement>;
 };
 
-
-
-const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
+const DragContainerItem: React.FC<DragContainerItemProps> = ({
   id,
   label,
   handleDragEnd,
@@ -31,7 +30,8 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
   labelClassName,
   itemClassName,
   dragElastic,
-  isHorizontalDrag
+  isHorizontalDrag,
+  refContainer
 }) => (
   <>
     <div id={`${id}-label`} className={labelClassName}>
@@ -50,8 +50,9 @@ const DraggableLabelItem: React.FC<DraggableLabelItemProps> = ({
       className={itemClassName}
       dragElastic={dragElastic}
       isHorizontalDrag={isHorizontalDrag}
+      refContainer={refContainer}
     />
   </>
 );
 
-export default DraggableLabelItem;
+export default DragContainerItem;

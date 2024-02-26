@@ -10,10 +10,7 @@ export default function InfoWindow({ className, text }: infoWindowProps) {
   if (text === "") return;
   return (
     <motion.div
-      className={
-        className +
-        `border-[1px] w-72 border-secondary border-opacity-50 bg-primary bg-opacity-95 p-3 text-[13px] text-white font-light`
-      }
+      className={`${className} border-[1px] w-72 p-3 text-[13px] text-white font-light` }
     >
       <AnimatePresence mode="wait">
         <motion.div
