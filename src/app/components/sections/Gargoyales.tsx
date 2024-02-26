@@ -30,7 +30,7 @@ export default function Gargoyales({ showNextSlide }: any) {
     monkey: useRef<HTMLDivElement>(null),
     containerRef: useRef<HTMLDivElement>(null),
   };
-  const { isDropped, x, y } = useDrag(targetsRef.lion, 20, 20, -10, 12);
+  const { isDropped, x, y } = useDrag(targetsRef.lion, 20, 20, -5, 12);
   const [infoWindowText, setInfoWindowText] = useState<string>(lionText);
   const [slideImage, setSlideImage] = useState("lion");
   const [spinnerVisibility, setSpinnerVisibility] = useState({
@@ -162,18 +162,18 @@ export default function Gargoyales({ showNextSlide }: any) {
   return (
     <SectionSlide bgImage="/images/gargoyales/gargoyales.png">
       {/* Help */}
-      <InfoWindowHelp infoWindowTextSize="text-[11px]" />
+      <InfoWindowHelp infoWindowTextSize="" />
 
       {/* Infowindow for dropped item */}
       <div className="me-[65px] ms-[95px]" ref={targetsRef.containerRef}>
         <InfoWindow
-          className="absolute left-[147px] top-[155px] z-20 h-[300px] w-[671px] border-black border-opacity-50 bg-black bg-opacity-10 text-[16px] shadow-lg"
+          className="absolute left-[147px] top-[150px] z-20 h-[300px] w-[671px] border-black border-opacity-0 bg-black bg-opacity-0"
           text={infoWindowText}
         />
 
         {/* Targets */}
-        <div className="absolute left-[5px] top-[120px] h-[360px] w-[820px] bg-white bg-opacity-0">
-          <div className="absolute left-[2px] top-[39px] h-[299px] w-[128px] bg-red-500 bg-opacity-0">
+        <div className="absolute left-[5px] top-[95px] h-[360px] w-[820px] bg-white bg-opacity-0">
+          <div className="absolute left-[2px] top-[58px] h-[289px] w-[128px] bg-red-500 bg-opacity-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={slideImage}
@@ -211,12 +211,12 @@ export default function Gargoyales({ showNextSlide }: any) {
             id="scrollDog"
             targetBgImg="bg-[url('/images/gargoyales/scroller.png')]"
             targetBgPos=""
-            loaderPos="ms-[10px] mt-[5px]"
+            loaderPos="ms-[7.8px] mt-[2px]"
             hideMarker={false}
             hideLoader={!isDropState.dog} // Use the state to control loader visibility directly
             isDropped={!isDropState.dog}
             ref={targetsRef.dog}
-            className="absolute left-[178px] top-[-15px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
+            className="absolute left-[177.9px] top-[7px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
           />
 
           <DragRefTarget
@@ -224,12 +224,12 @@ export default function Gargoyales({ showNextSlide }: any) {
             id="scrollWolf"
             targetBgImg=""
             targetBgPos=""
-            loaderPos="ms-[10px] mt-[5px]"
+            loaderPos="ms-[9px] mt-[2px]"
             hideMarker={false}
             hideLoader={!isDropState.wolf}
             isDropped={!isDropState.wolf}
             ref={targetsRef.wolf}
-            className="absolute left-[275px] top-[-15px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
+            className="absolute left-[275px] top-[7px] h-[50px] w-[50px] bg-orange-500 bg-opacity-0"
           />
 
           <DragRefTarget
@@ -237,50 +237,48 @@ export default function Gargoyales({ showNextSlide }: any) {
             id="scrollEagle"
             targetBgImg=""
             targetBgPos=""
-            loaderPos="ms-[10px] mt-[5px]"
+            loaderPos="ms-[6.7px] mt-[2px]"
             hideMarker={false}
             hideLoader={!isDropState.eagle}
             isDropped={!isDropState.eagle}
             ref={targetsRef.eagle}
-            className="absolute left-[380px] top-[-15px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
+            className="absolute left-[380px] top-[7px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
           />
-
           <DragRefTarget
             key="scrollSnake"
             id="scrollSnake"
             targetBgImg=""
             targetBgPos=""
-            loaderPos="ms-[10px] mt-[5px]"
+            loaderPos="ms-[6.3px] mt-[2px]"
             hideMarker={false}
             hideLoader={!isDropState.snake}
             isDropped={!isDropState.snake}
             ref={targetsRef.snake}
-            className="absolute left-[490px] top-[-15px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
+            className="absolute left-[489.8px] top-[7px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
           />
-
           <DragRefTarget
             key="scrollGoat"
             id="scrollGoat"
             targetBgImg=""
             targetBgPos=""
-            loaderPos="ms-[10px] mt-[5px]"
+            loaderPos="ms-[6px] mt-[2px]"
             hideMarker={false}
             hideLoader={!isDropState.goat}
             isDropped={!isDropState.goat}
             ref={targetsRef.goat}
-            className="absolute left-[598px] top-[-15px] h-[50px] w-[50px] bg-purple-500 bg-opacity-0"
+            className="absolute left-[598px] top-[7px] h-[50px] w-[50px] bg-purple-500 bg-opacity-0"
           />
           <DragRefTarget
             key="scrollMonkey"
             id="scrollMonkey"
             targetBgImg=""
             targetBgPos=""
-            loaderPos="ms-[10px] mt-[5px]"
+            loaderPos="ms-[6.8px] mt-[2px]"
             hideMarker={false}
             hideLoader={!isDropState.monkey}
             isDropped={!isDropState.monkey}
             ref={targetsRef.monkey}
-            className="absolute left-[710px] top-[-15px] h-[50px] w-[50px] bg-cyan-500 bg-opacity-0"
+            className="absolute left-[710px] top-[7px] h-[50px] w-[50px] bg-cyan-500 bg-opacity-0"
           />
         </div>
 
@@ -292,7 +290,7 @@ export default function Gargoyales({ showNextSlide }: any) {
             label=""
             hideDragItem={false}
             labelClassName=""
-            itemClassName="shadow-xs shadow-primary absolute left-[-529.5px] top-[-29px] h-[20px] w-[20px] bg-red-500 bg-opacity-0 bg-no-repeat"
+            itemClassName="shadow-xs shadow-primary absolute left-[-529.5px] top-[-32px] h-[20px] w-[20px] bg-red-500 bg-opacity-0 bg-no-repeat"
             dragItemImage="bg-[url('/images/gargoyales/scroller.png')]"
             handleDragEnd={handleDragEnd}
             isDropped={false}

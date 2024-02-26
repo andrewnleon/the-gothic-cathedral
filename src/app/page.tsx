@@ -28,10 +28,10 @@ export default function Home() {
       setShowIntro,
       setShowArchitecture,
       setShowGargoyales,
+      setShowStainedGlassWindow,
       setShowFlyingButtresses,
       setShowGothicVault,
       setShowRoof,
-      setShowStainedGlassWindow,
       setShowOutro,
     ],
     [],
@@ -71,14 +71,14 @@ export default function Home() {
     {
       label: "Gargoyales",
       isVisible: showGargoyales,
-      content: <Gargoyales  showNextSlide={goToNextSection} />,
+      content: <Gargoyales showNextSlide={goToNextSection} />,
       showButton: false,
     },
     {
       label: "Flying Buttresses",
       isVisible: showFlyingButtresses,
-      content: <FlyingButtresses />,
-      showButton: true,
+      content: <FlyingButtresses showNextSlide={goToNextSection} />,
+      showButton: false,
     },
     {
       label: "Gothic Vault",
@@ -90,8 +90,8 @@ export default function Home() {
     {
       label: "Stained Glass Window",
       isVisible: showStainedGlassWindow,
-      content: <StainedGlassWindow />,
-      showButton: true,
+      content: <StainedGlassWindow showNextSlide={goToNextSection} />,
+      showButton: false,
     },
     {
       label: "Thank You",

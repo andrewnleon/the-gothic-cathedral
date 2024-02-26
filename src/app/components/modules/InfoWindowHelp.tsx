@@ -21,12 +21,12 @@ export default function InfoWindowHelp({
       <motion.button
         type="button"
         onClick={toggleInfoWindow}
-        className="text-md absolute right-[0px] top-[80px] h-[auto] w-[100px] p-2 text-end font-bold text-secondary"
+        className="text-md absolute z-50 right-[0px] top-[80px] h-[auto] w-[100px] pe-1 pt-1 text-end font-bold text-secondary"
       >
         Help?
       </motion.button>
       <div
-        className={`absolute left-[540px] top-[120px] z-50 h-[auto] w-[240px] transition-opacity duration-300 ${isHovered ? "z-20 opacity-100" : " z-[0] opacity-0"}`}
+        className={`absolute left-[540px] top-[110px] z-50 h-[auto] w-[240px] transition-opacity duration-300 ${isHovered ? "z-20 opacity-100" : " z-[0] opacity-0"}`}
       >
         <InfoWindow
           className={`${infoWindowTextSize} h-[auto] w-[280px] text-nowrap border-[1px] border-secondary bg-primary bg-opacity-95 border-opacity-50`}

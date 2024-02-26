@@ -7,7 +7,12 @@ import InfoWindow from "@app/components/modules/InfoWindow";
 import InfoWindowHelp from "@app/components/modules/InfoWindowHelp";
 import useCompletionCount from "@app/lib/hooks/useCompletionCount";
 import { useHandlers } from "@app/lib/handlers";
-import { gargoyaleText, glassWindowText, flyingButtressesText, gothicVaultText, } from "@app/content";
+import {
+  gargoyaleText,
+  glassWindowText,
+  flyingButtressesText,
+  gothicVaultText,
+} from "@app/content";
 import SectionSlide from "../SectionSlide";
 
 export default function Architecture({ showNextSlide }: any) {
@@ -107,12 +112,15 @@ export default function Architecture({ showNextSlide }: any) {
   const hasCompletedCount = completedCount === isDroppedStates.length;
 
   return (
-    <SectionSlide bgImage="/images/architecture/architecture.png" refContainer={undefined}>
+    <SectionSlide
+      bgImage="/images/architecture/architecture.png"
+      refContainer={undefined}
+    >
       {/* Help */}
       <InfoWindowHelp infoWindowTextSize="" />
       {/* Infowindow for dropped item */}
       <InfoWindow
-        className="absolute left-[15px] top-[130px] z-20 w-[240px] shadow-lg border-secondary bg-primary bg-opacity-95 border-opacity-50"
+        className="absolute left-[15px] top-[130px] z-20 w-[240px] border-secondary border-opacity-50 bg-primary bg-opacity-95"
         text={infoWindowText}
       />
 
@@ -122,54 +130,53 @@ export default function Architecture({ showNextSlide }: any) {
           key="glassWindowTarget"
           id="glassWindowTarget"
           hideMarker={false}
-          targetBgImg="bg-[url('/images/architecture/architecture_drag1.png')] bg-no-repeat"
-          targetBgPos="absolute left-[302.5px] top-[185px] h-[100px] w-[50px]"
-          loaderPos=""
+          targetBgImg="bg-[url('/images/architecture/architecture_drag1_bg.png')] bg-no-repeat"
+          targetBgPos="absolute left-[302.5px] top-[186px] h-[100px] w-[80px]"
+          loaderPos="mt-[13.8px] ms-[12.8px]"
           isDropped={isDroppedGlassWindow}
           hideLoader={false}
           ref={glassWindowTargetRef}
-          className="absolute left-[296px] top-[184px] h-[50px] w-[50px] bg-red-500 bg-opacity-0"
+          className="absolute left-[296px] top-[184px] h-[80px] w-[80px] bg-red-500 bg-opacity-0"
         />
 
         <DragRefTarget
           key="gargoyalesTarget"
           id="gargoyalesTarget"
           hideMarker={false}
-          targetBgImg="bg-[url('/images/architecture/architecture_drag2.png')] bg-no-repeat bg-cover"
-          targetBgPos="absolute left-[274px] top-[29px] h-[135px] w-[84px]"
+          targetBgImg="bg-[url('/images/architecture/architecture_drag2_bg.png')] bg-no-repeat bg-cover"
+          targetBgPos="absolute left-[272px] top-[30px] h-[158px] w-[92px]"
           loaderPos=""
           isDropped={isDroppedGargoyales}
           hideLoader={false}
           ref={gargoyalesTargetRef}
-          className="absolute left-[285px] top-[80px] h-[50px] w-[50px] bg-yellow-500 bg-opacity-0"
+          className="absolute left-[277px] top-[80px] h-[92px] w-[92px] bg-yellow-500 bg-opacity-0"
         />
 
         <DragRefTarget
           key="gothicVaultTarget"
           id="gothicVaultTarget"
           hideMarker={false}
-          targetBgImg="bg-[url('/images/architecture/architecture_drag4.png')] bg-no-repeat bg-cover "
-          targetBgPos="absolute left-[460px] top-[79px] h-[225px] w-[146px]"
+          targetBgImg="bg-[url('/images/architecture/architecture_drag4_bg.png')] bg-no-repeat bg-cover "
+          targetBgPos="absolute left-[455px] top-[79px] h-[225px] w-[146px]"
           loaderPos=""
           isDropped={isDroppedGothicVault}
           hideLoader={false}
           ref={gothicVaultTargetRef}
-          className="absolute left-[525px] top-[135px] h-[50px] w-[50px] bg-green-500 bg-opacity-0"
+          className="absolute left-[525px] top-[135px] h-[146px] w-[146px] bg-green-500 bg-opacity-0"
         />
 
         <DragRefTarget
           key="flyingButtressesTarget"
           id="flyingButtressesTarget"
           hideMarker={false}
-          targetBgImg="bg-[url('/images/architecture/architecture_drag5.png')] bg-no-repeat bg-cover "
-          targetBgPos="absolute left-[350px] top-[185px] h-[125px] w-[180px]"
+          targetBgImg="bg-[url('/images/architecture/architecture_drag5_bg.png')] bg-no-repeat"
+          targetBgPos="absolute left-[362px] top-[186.5px] h-[120px] w-[171px]"
           loaderPos=""
           isDropped={isDroppedFlyingButtresses}
           hideLoader={false}
           ref={flyingButtressesTargetRef}
-          className="absolute left-[430px] top-[225px] h-[50px] w-[50px] bg-blue-500 bg-opacity-0"
+          className="absolute left-[430px] top-[225px] h-[120px] w-[120px] bg-blue-500 bg-opacity-0"
         />
-
       </div>
 
       {/* Drags */}
@@ -186,7 +193,7 @@ export default function Architecture({ showNextSlide }: any) {
           isDropped={isDroppedGlassWindow}
           x={xGlassWindow}
           y={yGlassWindow}
-          itemClassName="absolute left-[30px] top-[0px] h-[76px] w-[49px] bg-red-500 bg-opacity-0 bg-cover"
+          itemClassName="absolute left-[30px] top-[5px] h-[70px] w-[49px] bg-red-500 bg-opacity-0 bg-cover"
           dragElastic={0}
           isHorizontalDrag={false}
         />
@@ -212,13 +219,13 @@ export default function Architecture({ showNextSlide }: any) {
           id="flyingbuttresses"
           hideDragItem={false}
           label="Flying Buttresses"
-          labelClassName="relative left-[5px] top-[95px] z-20 h-[10px] w-[80px] text-center text-[9px] text-white"
+          labelClassName="relative left-[5px] top-[97px] z-20 h-[10px] w-[80px] text-center text-[9px] text-white"
           dragItemImage="bg-[url('/images/architecture/architecture_drag5.png')]"
           handleDragEnd={handleDragEndFlyingButtressesModified}
           isDropped={isDroppedFlyingButtresses}
           x={xFlyingButtresses}
           y={yFlyingButtresses}
-          itemClassName="absolute left-[17px] top-[100px] h-[70px] w-[70px] bg-blue-500 bg-opacity-0 bg-cover"
+          itemClassName="absolute left-[17px] top-[115px] h-[50px] w-[70px] bg-blue-500 bg-opacity-0 bg-cover"
           dragElastic={0}
           isHorizontalDrag={false}
         />
@@ -234,7 +241,7 @@ export default function Architecture({ showNextSlide }: any) {
           isDropped={isDroppedGothicVault}
           x={xGothicVault}
           y={yGothicVault}
-          itemClassName="absolute left-[70px] top-[105px] h-[105px] w-[75px] bg-green-500 bg-opacity-0 bg-cover"
+          itemClassName="absolute left-[70px] top-[105px] h-[115px] w-[70px] bg-green-500 bg-opacity-0 bg-cover"
           dragElastic={0}
           isHorizontalDrag={false}
         />
@@ -242,10 +249,7 @@ export default function Architecture({ showNextSlide }: any) {
 
       {/* Continue  */}
       {hasCompletedCount && (
-        <ContinueBtn
-          className=""
-          onClick={() => setIsContinue(true)}
-        />
+        <ContinueBtn className="" onClick={() => setIsContinue(true)} />
       )}
     </SectionSlide>
   );

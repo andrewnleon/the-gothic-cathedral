@@ -1,65 +1,31 @@
 import useModifiedDragEnd from "../hooks/useDragHandler";
 
 export const useHandlers = (dependencies: any) => {
-
-  //Gargoyales
-  // const handleDragEndLionModified = useModifiedDragEnd({
-  //   handleDragEnd: dependencies.handleDragEndLion,
-  //   targetRef: dependencies.lionTargetRef,
-  //   text: dependencies.lionText,
-  //   setInfoWindowText: dependencies.setInfoWindowText,
-  // });
-  // const handleDragEndDogModified = useModifiedDragEnd({
-  //   handleDragEnd: dependencies.handleDragEndDog,
-  //   targetRef: dependencies.dogTargetRef,
-  //   text: dependencies.dogText,
-  //   setInfoWindowText: dependencies.setInfoWindowText,
-  // });
-  // const handleDragEndWolfModified = useModifiedDragEnd({
-  //   handleDragEnd: dependencies.handleDragEndWolf,
-  //   targetRef: dependencies.wolfTargetRef,
-  //   text: dependencies.wolfText,
-  //   setInfoWindowText: dependencies.setInfoWindowText,
-  // });
-
-
-
-
-
-
-
-
-
-
-  //Architecture
+  // Architecture
   const handleDragEndGlassWindowModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndGlassWindow,
     targetRef: dependencies.glassWindowTargetRef,
     text: dependencies.glassWindowText,
     setInfoWindowText: dependencies.setInfoWindowText,
   });
-
   const handleDragEndGargoyalesModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndGargoyales,
     targetRef: dependencies.gargoyalesTargetRef,
     text: dependencies.gargoyaleText,
     setInfoWindowText: dependencies.setInfoWindowText,
   });
-
   const handleDragEndFlyingButtressesModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndFlyingButtresses,
     targetRef: dependencies.flyingButtressesTargetRef,
     text: dependencies.flyingButtressesText,
     setInfoWindowText: dependencies.setInfoWindowText,
   });
-
   const handleDragEndGothicVaultModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndGothicVault,
     targetRef: dependencies.gothicVaultTargetRef,
     text: dependencies.gothicVaultText,
     setInfoWindowText: dependencies.setInfoWindowText,
   });
-
   const handleDragEndRoofModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndRoof,
     targetRef: dependencies.roofTargetRef,
@@ -67,15 +33,53 @@ export const useHandlers = (dependencies: any) => {
     setInfoWindowText: dependencies.setInfoWindowText,
   });
 
-  return {
-    // handleDragEndLionModified,
-    // handleDragEndDogModified,
-    // handleDragEndWolfModified,
+  // Flying Buttressess
+  const handleDragEndFlyingButtressesSidingModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndFlyingButtressesSiding,
+    targetRef: dependencies.flyingButtressesTargetRef,
+    text: dependencies.flyingButtressesSideText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  }); 
+  const handleDragEndWoodFrameModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndWoodFrame,
+    targetRef: dependencies.woodFrameTargetRef,
+    text: dependencies.woodFrameText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
 
+  // Stained Windows
+  const handleDragEndGlassLeftModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndGlassLeft,
+    targetRef: dependencies.glassLeftTargetRef,
+    text: dependencies.glassLeftText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  }); 
+  const handleDragEndGlassCenterModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndGlassMiddle,
+    targetRef: dependencies.glassMiddleTargetRef,
+    text: dependencies.glassMiddleText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+
+  const handleDragEndGlassRightModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndGlassRight,
+    targetRef: dependencies.glassRightTargetRef,
+    text: dependencies.glassRightText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  }); 
+  
+  return {
     handleDragEndGlassWindowModified,
     handleDragEndGargoyalesModified,
     handleDragEndFlyingButtressesModified,
     handleDragEndGothicVaultModified,
     handleDragEndRoofModified,
+    // Flying Buttressess
+    handleDragEndWoodFrameModified,
+    handleDragEndFlyingButtressesSidingModified,
+    // Stained Windows
+    handleDragEndGlassLeftModified,
+    handleDragEndGlassCenterModified,
+    handleDragEndGlassRightModified
   };
 };
