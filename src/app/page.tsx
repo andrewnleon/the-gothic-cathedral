@@ -80,8 +80,8 @@ export default function Home() {
     {
       label: "Gothic Vault",
       isVisible: showGothicVault,
-      content: <GothicVault />,
-      showButton: true,
+      content: <GothicVault showNextSlide={goToNextSection} />,
+      showButton: false,
     },
     {
       label: "Stained Glass Window",

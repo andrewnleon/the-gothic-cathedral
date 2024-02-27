@@ -39,7 +39,7 @@ export const useHandlers = (dependencies: any) => {
     targetRef: dependencies.flyingButtressesTargetRef,
     text: dependencies.flyingButtressesSideText,
     setInfoWindowText: dependencies.setInfoWindowText,
-  }); 
+  });
   const handleDragEndWoodFrameModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndWoodFrame,
     targetRef: dependencies.woodFrameTargetRef,
@@ -53,21 +53,46 @@ export const useHandlers = (dependencies: any) => {
     targetRef: dependencies.glassLeftTargetRef,
     text: dependencies.glassLeftText,
     setInfoWindowText: dependencies.setInfoWindowText,
-  }); 
+  });
   const handleDragEndGlassCenterModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndGlassMiddle,
     targetRef: dependencies.glassMiddleTargetRef,
     text: dependencies.glassMiddleText,
     setInfoWindowText: dependencies.setInfoWindowText,
   });
-
   const handleDragEndGlassRightModified = useModifiedDragEnd({
     handleDragEnd: dependencies.handleDragEndGlassRight,
     targetRef: dependencies.glassRightTargetRef,
     text: dependencies.glassRightText,
     setInfoWindowText: dependencies.setInfoWindowText,
-  }); 
-  
+  });
+
+  // Gothic Vault
+  const handleDragEndVaultAModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndVaultA,
+    targetRef: dependencies.vaultATargetRef,
+    text: dependencies.gothicVaultAText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+  const handleDragEndVaultBModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndVaultB,
+    targetRef: dependencies.vaultBTargetRef,
+    text: dependencies.gothicVaultBText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+  const handleDragEndVaultCModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndVaultC,
+    targetRef: dependencies.vaultCTargetRef,
+    text: dependencies.gothicVaultCText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+  const handleDragEndVaultDModified = useModifiedDragEnd({
+    handleDragEnd: dependencies.handleDragEndVaultD,
+    targetRef: dependencies.vaultDTargetRef,
+    text: dependencies.gothicVaultDText,
+    setInfoWindowText: dependencies.setInfoWindowText,
+  });
+
   return {
     handleDragEndGlassWindowModified,
     handleDragEndGargoyalesModified,
@@ -80,6 +105,11 @@ export const useHandlers = (dependencies: any) => {
     // Stained Windows
     handleDragEndGlassLeftModified,
     handleDragEndGlassCenterModified,
-    handleDragEndGlassRightModified
+    handleDragEndGlassRightModified,
+    //Gothic Vault
+    handleDragEndVaultAModified,
+    handleDragEndVaultBModified,
+    handleDragEndVaultCModified,
+    handleDragEndVaultDModified,
   };
 };

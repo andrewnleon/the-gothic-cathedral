@@ -30,7 +30,7 @@ const DraggableRefTarget = React.forwardRef<HTMLDivElement, Props>(
     ref,
   ) => {
     return (
-      <>
+      <div>
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 1 }}
@@ -47,7 +47,7 @@ const DraggableRefTarget = React.forwardRef<HTMLDivElement, Props>(
             />
           )}
         </motion.div>
-      </>
+      </div>
     );
   },
 );

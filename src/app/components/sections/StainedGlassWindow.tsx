@@ -85,7 +85,7 @@ export default function StainedGlassWindow({ showNextSlide }: any) {
       <InfoWindowHelp infoWindowTextSize="" />
       {/* Infowindow for dropped item */}
       <InfoWindow
-        className="absolute left-[15px] top-[130px] z-20 w-[310px] border-0"
+        className="absolute left-[15px] top-[130px] z-20 w-[325px] border-0 border-black bg-black bg-opacity-20"
         text={infoWindowText}
       />
 
@@ -109,7 +109,7 @@ export default function StainedGlassWindow({ showNextSlide }: any) {
           id="glassMiddleTarget"
           hideMarker={false}
           targetBgImg="bg-[url('/images/stainedwindows/cmiddle.png')] bg-no-repeat"
-          targetBgPos="absolute left-[445px] top-[9px] h-[343px] w-[79px]"
+          targetBgPos="absolute left-[445px] top-[9px] h-[343px] w-[80px]"
           loaderPos=""
           isDropped={isDroppedGlassMiddle}
           hideLoader={false}
