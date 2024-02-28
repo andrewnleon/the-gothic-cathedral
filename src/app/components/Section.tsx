@@ -19,7 +19,7 @@ export default function Section({
           <>
             {children}
             {showButton && (
-              <div className="text-glow blink absolute bottom-[15px] right-[55px] h-[auto] w-[100px] p-2 text-end text-[26px] font-bold uppercase text-secondary transition-opacity duration-75">
+              <div className="text-glow blink absolute bottom-[0px] right-[55px] h-[auto] w-[100px] p-2 text-end text-[26px] font-bold uppercase text-secondary transition-opacity duration-75">
                 <button onClick={handleClick}>{label}</button>
               </div>
             )}

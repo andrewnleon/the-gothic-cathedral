@@ -15,13 +15,16 @@ export default function SectionSlide({ children, bgImage, refContainer }: any) {
           width="939"
           alt="Tray"
         />
-        <Image
-          src={bgImage}
-          width={816}
-          height={400}
-          alt="Gargoyales"
-          className="absolute inset-0 z-10 m-auto"
-        />
+        {bgImage &&
+          <Image
+            src={bgImage}
+            width={816}
+            height={400}
+            alt="Gargoyales"
+            className="absolute inset-0 z-10 m-auto"
+          />
+        }
+
         <Image src="/images/tray.png" layout="fill" alt="Tray" />
       </div>
     </div>

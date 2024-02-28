@@ -167,7 +167,7 @@ export default function Gargoyales({ showNextSlide }: any) {
       {/* Infowindow for dropped item */}
       <div className="me-[65px] ms-[95px]" ref={targetsRef.containerRef}>
         <InfoWindow
-          className="absolute left-[147px] top-[150px] z-20 h-[300px] w-[671px] border-black border-opacity-0 bg-black bg-opacity-0"
+          className="absolute text-md left-[150px] top-[150px] z-20 h-[300px] w-[671px] border-black border-opacity-0 bg-black bg-opacity-0"
           text={infoWindowText}
         />
 

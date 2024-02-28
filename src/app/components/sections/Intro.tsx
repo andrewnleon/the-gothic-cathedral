@@ -8,17 +8,22 @@ export default function Intro() {
         className="items-top relative flex justify-center"
         style={{ height: "362px" }}
       >
-        <h1 className="absolute mt-[50px] font-default text-2xl text-center leading-normal text-secondary">
-          Welcome to <br /> the gothic cathedral
+        <h1 className="absolute mt-[45px] text-center font-default text-2xl font-bold leading-normal text-secondary">
+          Welcome!
         </h1>
-        <div className="text-md absolute left-10 mt-[130px] pe-10 text-start text-secondary">
+        <div className="text-md absolute left-10 mt-[100px] pe-10 text-start text-secondary">
           <div className="flex">
-            <div className="pe-3 -mt-1 font-default text-5xl">A</div>
-            <p className="sm:text-sm md:text-md lg:text-[16px]">
-              Gothic Cathedral is a symbol of god and his power. It also resembles how much people respect him and his representation. A lot of cathedrals have been destroyed or worn away from time. But their artistic value will always be remembered and treaseured. 
+            <div className="-mt-1 pe-3 font-default text-5xl">A</div>
+            <p className="md:text-md sm:text-sm lg:text-lg heading-tight">
+              Gothic Cathedral is a symbol of god and his power. It also
+              resembles how much people respect him and his representation. A
+              lot of cathedrals have been destroyed or worn away from time. But
+              their artistic value will always be remembered and treaseured.
               <br />
               <br />
-              In this kiosk you will learn about these pieces from their contstruction to different types of gargoyales located on a gothic cathedral.
+              In this kiosk you will learn about these pieces from their
+              contstruction to different types of gargoyales located on a gothic
+              cathedral.
             </p>
           </div>
         </div>

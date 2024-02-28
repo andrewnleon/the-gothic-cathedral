@@ -93,7 +93,7 @@ export default function Home() {
       label: "Thank You",
       isVisible: showOutro,
       content: <ThankYou />,
-      showButton: true,
+      showButton: false,
     },
   ];
 
