@@ -10,6 +10,7 @@ import Intro from "./components/sections/Intro";
 import Section from "./components/Section";
 import StainedGlassWindow from "./components/sections/StainedGlassWindow";
 import ThankYou from "./components/sections/ThankYou";
+import Image from "next/image";
 
 export default function Home() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
@@ -45,7 +46,6 @@ export default function Home() {
   }, [currentSectionIndex, sectionSetters]);
 
   const goToNextSection = () => {
-    console.log("Advancing to next section from", currentSectionIndex); // Debugging line
     if (currentSectionIndex < sectionSetters.length - 1) {
       sectionSetters[currentSectionIndex](false);
       setCurrentSectionIndex(currentSectionIndex + 1);
@@ -98,24 +98,82 @@ export default function Home() {
   ];
 
   return (
-    <main className="flex h-screen w-screen select-none flex-col items-center justify-between overflow-hidden">
-      <div className="relative z-[10] flex flex-grow items-center justify-center">
-        <AnimatePresence mode="sync">
-          {sections.map(
-            (section, index) =>
-              section.isVisible && (
-                <Section
-                  key={index}
-                  isVisible={section.isVisible}
-                  onNext={goToNextSection}
-                  showButton={section.showButton}
-                  label={section.label}
-                >
-                  {section.content}
-                </Section>
-              ),
-          )}
-        </AnimatePresence>
+    <main
+      className="flex h-screen w-screen select-none flex-col items-center justify-between 
+    bg-[url('/images/bg_wall.jpg')] bg-center"
+    >
+      <div className="relative top-0 flex w-full justify-center">
+        <Image
+          src="/images/top.png"
+          className=""
+          height="43"
+          width="1200"
+          alt=""
+        />
+      </div>
+
+      <div className="relative z-50 flex flex-grow items-center justify-center">
+        <div className="relative z-50 flex">
+          <AnimatePresence mode="sync">
+            {sections.map(
+              (section, index) =>
+                section.isVisible && (
+                  <Section
+                    key={index}
+                    isVisible={section.isVisible}
+                    onNext={goToNextSection}
+                    showButton={section.showButton}
+                    label={section.label}
+                  >
+                    {section.content}
+                  </Section>
+                ),
+            )}
+          </AnimatePresence>
+        </div>
+        <div className="z-1 absolute top-0 flex w-full justify-center md:mt-10 lg:mt-12">
+          <Image
+            src="/images/title.png"
+            className="w-100 max-w-none mix-blend-overlay"
+            height="30"
+            width="461"
+            quality={100}
+            alt=""
+          />
+        </div>
+
+        <div className="z-1 absolute mt-52 flex justify-center">
+          <Image
+            src="/images/line_rails.png"
+            className="w-100 max-w-none mix-blend-overlay"
+            width="962"
+            height="771"
+            quality={100}
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <Image
+          src="/images/church.png"
+          className="w-100 absolute z-20 max-w-none mix-blend-overlay"
+          width="962"
+          height="771"
+          quality={100}
+          alt=""
+        />
+      </div>
+
+      <div className="relative bottom-0 z-50 flex justify-center">
+        <Image
+          src="/images/bottom.png"
+          className=""
+          height="55"
+          width="1200"
+          quality={100}
+          alt=""
+        />
       </div>
     </main>
   );

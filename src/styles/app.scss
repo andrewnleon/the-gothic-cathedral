@@ -9,7 +9,7 @@ $accent: #79A9C3;
 
 @layer base {
   body {
-    @apply bg-black font-default;
+    @apply bg-black font-default overflow-hidden;
     letter-spacing: 0.1rem;
   }
   h1 {
