@@ -7,6 +7,7 @@ export default function Section({
   children,
   label,
   showButton,
+  isMobile,
 }: any) {
   const handleClick = () => {
     onNext(false);
@@ -14,7 +15,13 @@ export default function Section({
 
   return (
     <SectionTransition isVisible={isVisible}>
-      <div className={`${isVisible ? "relative flex h-[auto] w-[auto]" : ""}`}>
+      <div
+        className={`${isVisible ? "relative flex" : ""}`}
+        style={{
+          scale: isMobile ? 0.75 : 1,
+          marginTop: isMobile ? -25 : 0,
+        }}
+      >
         {isVisible && (
           <>
             {children}

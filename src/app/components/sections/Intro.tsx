@@ -14,7 +14,7 @@ export default function Intro() {
         <div className="text-md absolute left-10 mt-[100px] pe-10 text-start text-secondary">
           <div className="flex">
             <div className="-mt-1 pe-3 font-default text-5xl">A</div>
-            <p className="md:text-md sm:text-sm lg:text-lg heading-tight">
+            <p className="md:text-md heading-tight text-[2vw] lg:text-lg">
               Gothic Cathedral is a symbol of god and his power. It also
               resembles how much people respect him and his representation. A
               lot of cathedrals have been destroyed or worn away from time. But

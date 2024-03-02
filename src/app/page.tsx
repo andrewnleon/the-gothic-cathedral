@@ -11,6 +11,7 @@ import Section from "./components/Section";
 import StainedGlassWindow from "./components/sections/StainedGlassWindow";
 import ThankYou from "./components/sections/ThankYou";
 import Image from "next/image";
+import UseMobileViewport from "./lib/hooks/useMobileViewPort";
 
 export default function Home() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
@@ -21,6 +22,7 @@ export default function Home() {
   const [showGothicVault, setShowGothicVault] = useState(false);
   const [showStainedGlassWindow, setShowStainedGlassWindow] = useState(false);
   const [showOutro, setShowOutro] = useState(false);
+  const isMobile = UseMobileViewport();
 
   const sectionSetters = useMemo(
     () => [
@@ -98,11 +100,8 @@ export default function Home() {
   ];
 
   return (
-    <main
-      className="flex h-screen w-screen select-none flex-col items-center justify-between 
-    bg-[url('/images/bg_wall.jpg')] bg-center"
-    >
-      <div className="relative top-0 flex w-full justify-center">
+    <main className="flex h-screen w-screen select-none flex-col items-center justify-between">
+      <div className="relative top-0 hidden w-full justify-center lg:flex">
         <Image
           src="/images/top.png"
           className=""
@@ -112,14 +111,24 @@ export default function Home() {
         />
       </div>
 
-      <div className="relative z-50 flex flex-grow items-center justify-center">
-        <div className="relative z-50 flex">
+      <div
+        className="relative z-10 flex flex-grow items-center justify-center"
+        style={{
+          width: "100%",
+          left: isMobile ? 0 : "auto",
+          scale: isMobile ? 0.98 : 1,
+          maxHeight: isMobile ? "100vh" : "100%", // Prevent the div from extending beyond the viewport height
+          overflow: "hidden", // Hide the overflowed content
+        }}
+      >
+        <div className="relative z-[50] flex">
           <AnimatePresence mode="sync">
             {sections.map(
               (section, index) =>
                 section.isVisible && (
                   <Section
                     key={index}
+                    isMobile={isMobile}
                     isVisible={section.isVisible}
                     onNext={goToNextSection}
                     showButton={section.showButton}
@@ -131,7 +140,7 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
-        <div className="z-1 absolute top-0 flex w-full justify-center md:mt-10 lg:mt-12">
+        <div className="z-1 absolute top-0 mt-10 hidden w-full justify-center lg:mt-12 lg:flex">
           <Image
             src="/images/title.png"
             className="w-100 max-w-none mix-blend-overlay"
@@ -142,7 +151,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="z-1 absolute mt-52 flex justify-center">
+        <div className="z-1 absolute mt-52 hidden justify-center lg:flex">
           <Image
             src="/images/line_rails.png"
             className="w-100 max-w-none mix-blend-overlay"
@@ -154,7 +163,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="hidden justify-center lg:flex">
         <Image
           src="/images/church.png"
           className="w-100 absolute z-20 max-w-none mix-blend-overlay"
@@ -165,7 +174,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="relative bottom-0 z-50 flex justify-center">
+      <div className="relative bottom-0 z-50 hidden justify-center lg:flex">
         <Image
           src="/images/bottom.png"
           className=""

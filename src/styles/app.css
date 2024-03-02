@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
   body {
-    @apply bg-black font-default overflow-hidden;
+    @apply bg-black font-default overflow-hidden bg-[url("/images/bg_wall.jpg")] bg-center;
     letter-spacing: 0.1rem;
   }
   h1 {
