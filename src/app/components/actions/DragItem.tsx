@@ -38,7 +38,7 @@ export default function DragItem({
       dragElastic={dragElastic}
       dragConstraints={refContainer}
       onDragEnd={(event, info) => handleDragEnd(event, info)}
-      className={`${isDropped ? "pointer-events-none" : "pointer-events-auto"} ${dragItemImage} ${className} z-10 cursor-grabbing`}
+      className={`${isDropped ? "pointer-events-none" : "pointer-events-auto"} ${dragItemImage} ${className} z-40 cursor-grabbing`}
     >
       <motion.div className="flex justify-center pt-1" />
     </motion.div>

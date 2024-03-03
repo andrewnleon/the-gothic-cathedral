@@ -36,9 +36,8 @@ export const gothicVaultDText = "The rightmost section presents the same Gothic 
 
 //Help
 export const infoWindowHelpText = `
-<b>Architecture:</b> Drag & Drop <br />
-<b>Gargoyles:</b> Slider <br />
-<b>Flying Buttresses:</b> Drag & Drop <br />
-<b>Gothic Vault:</b> Drag & Drop <br />
-<b>Roof:</b> Drag & Drop <br />
-<b>Stained Glass Window:</b> Drag & Drop <br />`;
+<b>Architecture:</b> Drag parts to building <br />
+<b>Gargoyles:</b> Click & drag scroll <br />
+<b>Stained Glass Window:</b> Drag & Drop <br />
+<b>Flying Buttresses:</b> Drag parts to structure <br />
+<b>Gothic Vault:</b> Drag parts to under roof <br />`;

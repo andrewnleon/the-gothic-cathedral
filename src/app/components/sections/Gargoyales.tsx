@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
 import React, { useRef, useState } from "react";
-import useDrag from "@app/lib/hooks/useDrag";
 import DragRefTarget from "@app/components/actions/DragRefTarget";
-import DraggableLabelItem from "@app/components/actions/DragContainerItem";
+import DragContainerItem from "@app/components/actions/DragContainerItem";
 import ContinueBtn from "@app/components/modules/ContinueBtn";
 import InfoWindow from "@app/components/modules/InfoWindow";
 import InfoWindowHelp from "@app/components/modules/InfoWindowHelp";
@@ -30,7 +28,6 @@ export default function Gargoyales({ showNextSlide }: any) {
     monkey: useRef<HTMLDivElement>(null),
     containerRef: useRef<HTMLDivElement>(null),
   };
-  const { isDropped, x, y } = useDrag(targetsRef.lion, 20, 20, -5, 12);
   const [infoWindowText, setInfoWindowText] = useState<string>(lionText);
   const [slideImage, setSlideImage] = useState("lion");
   const [spinnerVisibility, setSpinnerVisibility] = useState({
@@ -167,7 +164,7 @@ export default function Gargoyales({ showNextSlide }: any) {
       {/* Infowindow for dropped item */}
       <div className="me-[65px] ms-[95px]" ref={targetsRef.containerRef}>
         <InfoWindow
-          className="absolute text-md left-[150px] top-[150px] z-20 h-[300px] w-[671px] border-black border-opacity-0 bg-black bg-opacity-0"
+          className="absolute text-md lg:text-[14px] left-[150px] top-[150px] z-20 h-[300px] w-[670px] border-black border-opacity-0 bg-black bg-opacity-0"
           text={infoWindowText}
         />
 
@@ -284,7 +281,7 @@ export default function Gargoyales({ showNextSlide }: any) {
 
         {/* Scroller */}
         <div className="absolute right-[12px] top-[130px] w-[171px]">
-          <DraggableLabelItem
+          <DragContainerItem
             key="scroller"
             id="scrollerItem"
             label=""

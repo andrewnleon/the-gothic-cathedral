@@ -26,10 +26,10 @@ export default function InfoWindowHelp({
         Help?
       </motion.button>
       <div
-        className={`absolute left-[540px] top-[110px] z-50 h-[auto] w-[240px] transition-opacity duration-300 ${isHovered ? "z-20 opacity-100" : " z-[0] opacity-0"}`}
+        className={`absolute left-[490px] top-[110px] z-50 h-[auto] w-[240px] transition-opacity duration-300 ${isHovered ? "z-20 opacity-100" : " z-[0] opacity-0"}`}
       >
         <InfoWindow
-          className={`${infoWindowTextSize} h-[auto] w-[280px] text-nowrap border-[1px] border-secondary bg-primary bg-opacity-95 border-opacity-50`}
+          className={`${infoWindowTextSize} h-[auto] w-[330px] text-nowrap border-[1px] rounded-lg border-secondary bg-primary bg-opacity-95 border-opacity-50`}
           text={infoWindowHelpText}
         />
       </div>

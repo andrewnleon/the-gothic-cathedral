@@ -117,11 +117,11 @@ export default function Home() {
           width: "100%",
           left: isMobile ? 0 : "auto",
           scale: isMobile ? 0.98 : 1,
-          maxHeight: isMobile ? "100vh" : "100%", // Prevent the div from extending beyond the viewport height
-          overflow: "hidden", // Hide the overflowed content
+          maxHeight: isMobile ? "100vh" : "100%",
+          overflow: "hidden",
         }}
       >
-        <div className="relative z-[50] flex">
+        <div className="relative z-50 flex">
           <AnimatePresence mode="sync">
             {sections.map(
               (section, index) =>
@@ -140,7 +140,7 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
-        <div className="z-1 absolute top-0 mt-10 hidden w-full justify-center lg:mt-12 lg:flex">
+        <div className="z-1 absolute top-0 mt-10 hidden w-full justify-center lg:mt-12 xl:flex">
           <Image
             src="/images/title.png"
             className="w-100 max-w-none mix-blend-overlay"
@@ -174,7 +174,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="relative bottom-0 z-50 hidden justify-center lg:flex">
+      <div className="relative bottom-0 z-40 hidden justify-center lg:flex">
         <Image
           src="/images/bottom.png"
           className=""

@@ -10,7 +10,7 @@ export default function SectionSlide({ children, bgImage, refContainer }: any) {
         </div>
         <Image
           src="/images/angels.png"
-          className="absolute bottom-0 left-[50px] z-10 m-auto"
+          className="absolute bottom-0 left-[50px] z-40 m-auto"
           height="99"
           width="939"
           alt="Tray"
@@ -24,7 +24,6 @@ export default function SectionSlide({ children, bgImage, refContainer }: any) {
             className="absolute inset-0 z-10 m-auto"
           />
         }
-
         <Image src="/images/tray.png" layout="fill" alt="Tray" />
       </div>
     </div>

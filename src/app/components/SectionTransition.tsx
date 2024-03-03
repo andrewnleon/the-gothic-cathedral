@@ -6,7 +6,7 @@ export default function SectionTransition({
   isVisible,
   onAnimationComplete,
 }: any) {
-  const slideDistance = 300; // Adjust this value for more or less sliding
+  const slideDistance = 900; // Adjust this value for more or less sliding
 
   return (
     <motion.div
