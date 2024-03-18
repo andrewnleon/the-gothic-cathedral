@@ -1,7 +1,8 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import '../styles/app.css'
-const inter = Inter({ subsets: ['latin'] })
+import { Inter } from "next/font/google";
+import Script from "next/script";
+import { Metadata } from "next";
+const inter = Inter({ subsets: ["latin"] });
+import "../styles/app.css";
 
 export const metadata: Metadata = {
   title: 'The Gothic Cathedral Kiosk | Created By Andrew Leonberger',
@@ -11,11 +12,22 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en-us">
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
+    <>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-V61ERZC46Z" />
+      <Script id="google-analytics">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V61ERZC46Z');
+      `}
+      </Script>
+      <html lang="en-us">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </>
+  );
 }
